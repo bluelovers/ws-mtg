@@ -5,16 +5,17 @@ export function findIndexOfLands<T extends ICardWithoutAmount = ICardWithoutAmou
 {
 	startIndex |= 0;
 
-	return cards.reduce((list, card, idx) => {
+	return cards.reduce((list, card, idx) =>
+	{
 
 		if (idx >= startIndex)
 		{
 			let info = parseSnowCoveredOrBaseLand(card.name);
 
-		if (info)
-		{
-			list.push(idx);
-		}
+			if (info)
+			{
+				list.push(idx);
+			}
 		}
 
 		return list
