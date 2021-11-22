@@ -4,5 +4,6 @@ import { ICardOfLibrary, IOptions as IOptionsDecklistToLibrary } from 'mtg-deckl
 export interface IOptionsDeckLibraryWithShuffle<T = ICardOfLibrary> extends IOptionsDecklistToLibrary<T>
 {
 	maxChunkLength?: number,
-	random?: Random
+	random?: Random,
+	ensureLands?: number | boolean,
 }

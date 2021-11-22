@@ -22,6 +22,7 @@ declare class DeckLibrary<T = {}> {
 export interface IOptionsDeckLibraryWithShuffle<T = ICardOfLibrary> extends IOptionsDecklistToLibrary<T> {
 	maxChunkLength?: number;
 	random?: Random;
+	ensureLands?: number | boolean;
 }
 export declare class DeckLibraryWithShuffle<T = {}> extends DeckLibrary<ICardOfLibrary<T>> {
 	_options?: IOptionsDeckLibraryWithShuffle<ICardOfLibrary<T>>;
@@ -30,8 +31,21 @@ export declare class DeckLibraryWithShuffle<T = {}> extends DeckLibrary<ICardOfL
 	shuffleStarting(): void;
 	shuffle(isStarting?: boolean): void;
 }
-export declare function distributeCards<T extends ICardOfLibraryBase = ICardOfLibraryBase>(cards: T[], options?: IOptionsDeckLibraryWithShuffle): T[];
-export declare function splitThenMerge<T = ICardOfLibraryBase>(cards: T[], options?: IOptionsDeckLibraryWithShuffle): T[];
+/**
+ * do distribute before shuffle
+ *
+ * - distribute lands
+ * - distribute cards and insert lands every 4 cards
+ */
+export declare function distributeCards<T extends ICardOfLibraryBase = ICardOfLibraryBase>(cards: T[], options?: IOptionsDeckLibraryWithShuffle, self?: DeckLibraryWithShuffle): T[];
+/**
+ * split cards chunk and merge by random oder
+ */
+export declare function splitThenMerge<T = ICardOfLibraryBase>(cards: T[], options?: IOptionsDeckLibraryWithShuffle, self?: DeckLibraryWithShuffle): T[];
+/**
+ * ensure always has lands when handSize >= 6
+ */
+export declare function ensureLands<T extends ICardOfLibraryBase = ICardOfLibraryBase>(cards: T[], options: IOptionsDeckLibraryWithShuffle, self: DeckLibraryWithShuffle): T[];
 export default DeckLibraryWithShuffle;
 
 export {};

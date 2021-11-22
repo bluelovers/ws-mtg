@@ -4,6 +4,7 @@ import { getRandomFromOptions } from './util/rand';
 import { splitThenMerge } from './method/splitThenMerge';
 import { Decklist } from 'mtg-decklist-parser2';
 import { distributeCards } from './method/distributeCards';
+import { ensureLands } from './method/ensureLands';
 
 export class DeckLibraryWithShuffle<T = {}> extends DeckLibrary<ICardOfLibrary<T>>
 {
@@ -27,11 +28,17 @@ export class DeckLibraryWithShuffle<T = {}> extends DeckLibrary<ICardOfLibrary<T
 	{
 		let options = this.options();
 
-		this.cards = [
+		const random = getRandomFromOptions(options);
+
+		options.ensureLands ??= random.int(0, 2);
+
+		let cards = [
 			distributeCards,
 			splitThenMerge,
+			ensureLands,
 		].reduce((cards, fn) => fn(cards, options, this), this.cards);
 
+		this.cards = cards;
 		this._shuffleStarting = true;
 	}
 
