@@ -1,13 +1,11 @@
-import { Decklist, ICard } from 'mtg-decklist-parser2';
+import { Decklist, ICard, ICardWithoutAmount } from 'mtg-decklist-parser2';
 
-export interface ICardOfLibraryBase extends Omit<ICard, "amount"> {
-}
-export declare type ICardOfLibrary<T = {}> = ICardOfLibraryBase & T;
+export declare type ICardOfLibrary<T = {}> = ICardWithoutAmount & T;
 export interface IOptions<T = ICardOfLibrary> {
-	entryHandler?(entry: ICardOfLibraryBase): T;
+	entryHandler?(entry: ICardWithoutAmount): T;
 }
-export declare function listToCardsArray<T = ICardOfLibraryBase>(deckCards: ICard[], options?: IOptions<T>): T[];
-export declare function deckListToCardsArray<T = ICardOfLibraryBase>(deck: Decklist, options?: IOptions<T>): T[];
+export declare function listToCardsArray<T = ICardWithoutAmount>(deckCards: ICard[], options?: IOptions<T>): T[];
+export declare function deckListToCardsArray<T = ICardWithoutAmount>(deck: Decklist, options?: IOptions<T>): T[];
 export declare class DeckLibrary<T = {}> {
 	readonly deck: Decklist;
 	cards: T[];
@@ -19,7 +17,11 @@ export declare class DeckLibrary<T = {}> {
 	shuffle(isStarting?: boolean): void;
 	drawStarting(noPickup?: boolean): T[];
 	draw(size?: number, noPickup?: boolean): T[];
+	toList(): string[];
+	toListString(sep?: string): string;
 }
+export declare function toList<T extends ICardWithoutAmount>(cards: T[]): string[];
+export declare function toListString<T extends ICardWithoutAmount>(cards: T[], sep?: string): string;
 export default deckListToCardsArray;
 
 export {};

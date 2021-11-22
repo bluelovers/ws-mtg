@@ -1,7 +1,7 @@
 import { readFile } from 'fs-extra';
 import { Decklist } from 'mtg-decklist-parser2';
 import { DeckLibraryWithShuffle } from '../../src/library';
-import { ICardOfLibraryBase } from 'mtg-decklist-to-library';
+import { ICardWithoutAmount } from 'mtg-decklist-parser2';
 import { join } from 'path';
 import { __root } from '../__root';
 import { groupByName } from '../../src/util/groupByName';
@@ -13,7 +13,7 @@ import { filterLands } from '../../src/util/filterLands';
 describe(`distributeCards`, () =>
 {
 
-	let cards: ICardOfLibraryBase[];
+	let cards: ICardWithoutAmount[];
 
 	beforeEach(async () =>
 	{

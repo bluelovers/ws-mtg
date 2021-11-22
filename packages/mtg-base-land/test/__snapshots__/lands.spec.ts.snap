@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Base Lands Forest parseSnowCoveredOrBaseLand 1`] = `
+Object {
+  "name": "Forest",
+  "snow": false,
+  "type": "Forest",
+}
+`;
+
+exports[`Base Lands Forest toSnowBaseLand 1`] = `"Snow-Covered Forest"`;
+
+exports[`Base Lands Forest toSnowBaseLand 2`] = `
+Object {
+  "name": "Snow-Covered Forest",
+  "snow": true,
+  "type": "Forest",
+}
+`;
+
+exports[`Base Lands Island parseSnowCoveredOrBaseLand 1`] = `
+Object {
+  "name": "Island",
+  "snow": false,
+  "type": "Island",
+}
+`;
+
+exports[`Base Lands Island toSnowBaseLand 1`] = `"Snow-Covered Island"`;
+
+exports[`Base Lands Island toSnowBaseLand 2`] = `
+Object {
+  "name": "Snow-Covered Island",
+  "snow": true,
+  "type": "Island",
+}
+`;
+
+exports[`Base Lands Mountain parseSnowCoveredOrBaseLand 1`] = `
+Object {
+  "name": "Mountain",
+  "snow": false,
+  "type": "Mountain",
+}
+`;
+
+exports[`Base Lands Mountain toSnowBaseLand 1`] = `"Snow-Covered Mountain"`;
+
+exports[`Base Lands Mountain toSnowBaseLand 2`] = `
+Object {
+  "name": "Snow-Covered Mountain",
+  "snow": true,
+  "type": "Mountain",
+}
+`;
+
+exports[`Base Lands Plains parseSnowCoveredOrBaseLand 1`] = `
+Object {
+  "name": "Plains",
+  "snow": false,
+  "type": "Plains",
+}
+`;
+
+exports[`Base Lands Plains toSnowBaseLand 1`] = `"Snow-Covered Plains"`;
+
+exports[`Base Lands Plains toSnowBaseLand 2`] = `
+Object {
+  "name": "Snow-Covered Plains",
+  "snow": true,
+  "type": "Plains",
+}
+`;
+
+exports[`Base Lands Swamp parseSnowCoveredOrBaseLand 1`] = `
+Object {
+  "name": "Swamp",
+  "snow": false,
+  "type": "Swamp",
+}
+`;
+
+exports[`Base Lands Swamp toSnowBaseLand 1`] = `"Snow-Covered Swamp"`;
+
+exports[`Base Lands Swamp toSnowBaseLand 2`] = `
+Object {
+  "name": "Snow-Covered Swamp",
+  "snow": true,
+  "type": "Swamp",
+}
+`;
+
+exports[`Snow Base Lands Snow-Covered Forest parseSnowCoveredOrBaseLand 1`] = `
+Object {
+  "name": "Snow-Covered Forest",
+  "snow": true,
+  "type": "Forest",
+}
+`;
+
+exports[`Snow Base Lands Snow-Covered Island parseSnowCoveredOrBaseLand 1`] = `
+Object {
+  "name": "Snow-Covered Island",
+  "snow": true,
+  "type": "Island",
+}
+`;
+
+exports[`Snow Base Lands Snow-Covered Mountain parseSnowCoveredOrBaseLand 1`] = `
+Object {
+  "name": "Snow-Covered Mountain",
+  "snow": true,
+  "type": "Mountain",
+}
+`;
+
+exports[`Snow Base Lands Snow-Covered Plains parseSnowCoveredOrBaseLand 1`] = `
+Object {
+  "name": "Snow-Covered Plains",
+  "snow": true,
+  "type": "Plains",
+}
+`;
+
+exports[`Snow Base Lands Snow-Covered Swamp parseSnowCoveredOrBaseLand 1`] = `
+Object {
+  "name": "Snow-Covered Swamp",
+  "snow": true,
+  "type": "Swamp",
+}
+`;

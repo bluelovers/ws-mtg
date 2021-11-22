@@ -1,7 +1,7 @@
-import { ICardOfLibraryBase } from 'mtg-decklist-to-library';
+import { ICardWithoutAmount } from 'mtg-decklist-parser2';
 import { parseSnowCoveredOrBaseLand } from 'mtg-base-land';
 
-export function filterLands<T extends ICardOfLibraryBase = ICardOfLibraryBase>(cards: T[])
+export function filterLands<T extends ICardWithoutAmount = ICardWithoutAmount>(cards: T[])
 {
 	return cards.reduce((data, card) =>
 	{

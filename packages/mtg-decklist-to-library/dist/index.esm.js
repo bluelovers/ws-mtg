@@ -1,3 +1,5 @@
+import { toCardStringWithoutAmount } from 'mtg-decklist-parser2';
+
 function _defineProperty(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
@@ -74,7 +76,25 @@ class DeckLibrary {
     return this.cards.splice(0, size);
   }
 
+  toList() {
+    return toList(this.cards);
+  }
+
+  toListString(sep = '\n') {
+    return toListString(this.cards, sep);
+  }
+
+}
+function toList(cards) {
+  const len = Math.max(3, cards.length.toString().length);
+  return cards.reduce((arr, card, index) => {
+    arr.push(`${String(index).padStart(len, '0')} ${toCardStringWithoutAmount(card)}`);
+    return arr;
+  }, []);
+}
+function toListString(cards, sep = '\n') {
+  return toList(cards).join(sep);
 }
 
-export { DeckLibrary, deckListToCardsArray, deckListToCardsArray as default, listToCardsArray };
+export { DeckLibrary, deckListToCardsArray, deckListToCardsArray as default, listToCardsArray, toList, toListString };
 //# sourceMappingURL=index.esm.js.map

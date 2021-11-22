@@ -1,4 +1,4 @@
-import { ICardOfLibraryBase } from 'mtg-decklist-to-library';
+import { ICardWithoutAmount } from 'mtg-decklist-parser2';
 import { IOptionsDeckLibraryWithShuffle } from '../types';
 import { DeckLibraryWithShuffle } from '../library';
 import { filterLands } from '../util/filterLands';
@@ -8,7 +8,7 @@ import { getRandomFromOptions } from '../util/rand';
 /**
  * ensure always has lands when handSize >= 6
  */
-export function ensureLands<T extends ICardOfLibraryBase = ICardOfLibraryBase>(cards: T[],
+export function ensureLands<T extends ICardWithoutAmount = ICardWithoutAmount>(cards: T[],
 	options: IOptionsDeckLibraryWithShuffle,
 	self: DeckLibraryWithShuffle,
 ): T[]

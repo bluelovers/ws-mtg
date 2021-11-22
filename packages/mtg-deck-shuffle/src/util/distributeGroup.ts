@@ -1,7 +1,7 @@
-import { ICardOfLibraryBase } from 'mtg-decklist-to-library';
+import { ICardWithoutAmount } from 'mtg-decklist-parser2';
 import { createGroupArray } from './createGroupArray';
 
-export function distributeGroup<T extends ICardOfLibraryBase = ICardOfLibraryBase>(group: Record<string, T[]>)
+export function distributeGroup<T extends ICardWithoutAmount = ICardWithoutAmount>(group: Record<string, T[]>)
 {
 	let arr = createGroupArray<T>(4);
 

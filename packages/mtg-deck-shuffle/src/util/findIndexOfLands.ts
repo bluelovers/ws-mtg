@@ -1,7 +1,7 @@
-import { ICardOfLibraryBase } from 'mtg-decklist-to-library';
+import { ICardWithoutAmount } from 'mtg-decklist-parser2';
 import { parseSnowCoveredOrBaseLand } from 'mtg-base-land';
 
-export function findIndexOfLands<T extends ICardOfLibraryBase = ICardOfLibraryBase>(cards: T[], startIndex?: number)
+export function findIndexOfLands<T extends ICardWithoutAmount = ICardWithoutAmount>(cards: T[], startIndex?: number)
 {
 	startIndex |= 0;
 

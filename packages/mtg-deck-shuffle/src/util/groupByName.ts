@@ -1,6 +1,6 @@
-import { ICardOfLibraryBase } from 'mtg-decklist-to-library';
+import { ICardWithoutAmount } from 'mtg-decklist-parser2';
 
-export function groupByName<T extends ICardOfLibraryBase = ICardOfLibraryBase>(cards: T[])
+export function groupByName<T extends ICardWithoutAmount = ICardWithoutAmount>(cards: T[])
 {
 	return cards.reduce((map, card) =>
 	{

@@ -1,20 +1,17 @@
-import { Decklist, ICard } from 'mtg-decklist-parser2';
+import { Decklist, ICard, ICardWithoutAmount, toCardStringWithoutAmount } from 'mtg-decklist-parser2';
 
-export interface ICardOfLibraryBase extends Omit<ICard, 'amount'>
-{
+export type { ICardWithoutAmount }
 
-}
-
-export type ICardOfLibrary<T = {}> = ICardOfLibraryBase & T
+export type ICardOfLibrary<T = {}> = ICardWithoutAmount & T
 
 const STARTING_HAND_SIZE = 7 as const
 
 export interface IOptions<T = ICardOfLibrary>
 {
-	entryHandler?(entry: ICardOfLibraryBase): T
+	entryHandler?(entry: ICardWithoutAmount): T
 }
 
-export function listToCardsArray<T = ICardOfLibraryBase>(deckCards: ICard[], options?: IOptions<T>): T[]
+export function listToCardsArray<T = ICardWithoutAmount>(deckCards: ICard[], options?: IOptions<T>): T[]
 {
 	let { entryHandler } = (options ?? {});
 
@@ -39,7 +36,7 @@ export function listToCardsArray<T = ICardOfLibraryBase>(deckCards: ICard[], opt
 	}, [] as T[])
 }
 
-export function deckListToCardsArray<T = ICardOfLibraryBase>(deck: Decklist, options?: IOptions<T>)
+export function deckListToCardsArray<T = ICardWithoutAmount>(deck: Decklist, options?: IOptions<T>)
 {
 	return listToCardsArray<T>(deck.deck, options)
 }
@@ -97,6 +94,33 @@ export class DeckLibrary<T = {}>
 		return this.cards.splice(0, size)
 	}
 
+	toList()
+	{
+		return toList(this.cards as any)
+	}
+
+	toListString(sep = '\n')
+	{
+		return toListString(this.cards as any, sep)
+	}
+
+}
+
+export function toList<T extends ICardWithoutAmount>(cards: T[])
+{
+	const len = Math.max(3, cards.length.toString().length);
+
+	return cards.reduce((arr, card, index) => {
+
+		arr.push(`${String(index).padStart(len, '0')} ${toCardStringWithoutAmount(card)}`)
+
+		return arr
+	}, [] as string[])
+}
+
+export function toListString<T extends ICardWithoutAmount>(cards: T[], sep = '\n')
+{
+	return toList(cards).join(sep)
 }
 
 export default deckListToCardsArray

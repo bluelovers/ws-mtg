@@ -1,4 +1,4 @@
-import { ICardOfLibraryBase } from 'mtg-decklist-to-library';
+import { ICardWithoutAmount } from 'mtg-decklist-parser2';
 import { IOptionsDeckLibraryWithShuffle } from '../types';
 import { filterLands } from '../util/filterLands';
 import { groupByName } from '../util/groupByName';
@@ -12,7 +12,7 @@ import { DeckLibraryWithShuffle } from '../library';
  * - distribute lands
  * - distribute cards and insert lands every 4 cards
  */
-export function distributeCards<T extends ICardOfLibraryBase = ICardOfLibraryBase>(cards: T[],
+export function distributeCards<T extends ICardWithoutAmount = ICardWithoutAmount>(cards: T[],
 	options?: IOptionsDeckLibraryWithShuffle,
 	self?: DeckLibraryWithShuffle,
 ): T[]

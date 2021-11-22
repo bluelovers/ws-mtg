@@ -1,5 +1,7 @@
 'use strict';
 
+var mtgDecklistParser2 = require('mtg-decklist-parser2');
+
 function _defineProperty(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
@@ -76,10 +78,30 @@ class DeckLibrary {
     return this.cards.splice(0, size);
   }
 
+  toList() {
+    return toList(this.cards);
+  }
+
+  toListString(sep = '\n') {
+    return toListString(this.cards, sep);
+  }
+
+}
+function toList(cards) {
+  const len = Math.max(3, cards.length.toString().length);
+  return cards.reduce((arr, card, index) => {
+    arr.push(`${String(index).padStart(len, '0')} ${mtgDecklistParser2.toCardStringWithoutAmount(card)}`);
+    return arr;
+  }, []);
+}
+function toListString(cards, sep = '\n') {
+  return toList(cards).join(sep);
 }
 
 exports.DeckLibrary = DeckLibrary;
 exports.deckListToCardsArray = deckListToCardsArray;
 exports["default"] = deckListToCardsArray;
 exports.listToCardsArray = listToCardsArray;
+exports.toList = toList;
+exports.toListString = toListString;
 //# sourceMappingURL=index.cjs.development.js.map
