@@ -30,7 +30,7 @@ export class DeckLibraryWithShuffle<T = {}> extends DeckLibrary<ICardOfLibrary<T
 		this.cards = [
 			distributeCards,
 			splitThenMerge,
-		].reduce((cards, fn) => fn(cards, options), this.cards);
+		].reduce((cards, fn) => fn(cards, options, this), this.cards);
 
 		this._shuffleStarting = true;
 	}

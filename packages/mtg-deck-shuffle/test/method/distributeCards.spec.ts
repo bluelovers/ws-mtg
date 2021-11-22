@@ -8,6 +8,7 @@ import { groupByName } from '../../src/util/groupByName';
 import { distributeGroup } from '../../src/util/distributeGroup';
 import distributeCards from '../../src/method/distributeCards';
 import { sumGroupCards } from '../../src/util/sumGroupCards';
+import { filterLands } from '../../src/util/filterLands';
 
 describe(`distributeCards`, () =>
 {
@@ -47,6 +48,66 @@ describe(`distributeCards`, () =>
 
 		expect(actual).toMatchSnapshot();
 		expect(actual).toHaveProperty('length', cards.length);
+
+	});
+
+	test(`distribute:baseLands`, () =>
+	{
+		let data = filterLands(cards);
+
+		let actual = distributeGroup(groupByName(data.baseLands));
+
+		expect(actual).toMatchSnapshot();
+
+	});
+
+	test(`distribute:snowLands`, () =>
+	{
+		let data = filterLands(cards);
+
+		let actual = distributeGroup(groupByName(data.snowLands));
+
+		expect(actual).toMatchSnapshot();
+
+	});
+
+	test(`distribute:others`, () =>
+	{
+		let data = filterLands(cards);
+
+		let actual = distributeGroup(groupByName(data.others));
+
+		expect(actual).toMatchSnapshot();
+
+	});
+
+	test(`distribute:check`, () =>
+	{
+		let data = [
+			{
+				"name": "Forest",
+			},
+			{
+				"name": "Plains",
+			},
+			{
+				"name": "Forest",
+			},
+			{
+				"name": "Plains",
+			},
+			{
+				"name": "Forest",
+			},
+			{
+				"name": "Plains",
+			},
+		];
+
+		let actual = distributeGroup(groupByName(data));
+
+		expect(actual).toMatchSnapshot();
+		expect(actual).toStrictEqual(data);
 
 	});
 

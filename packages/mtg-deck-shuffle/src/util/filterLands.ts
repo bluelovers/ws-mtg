@@ -3,7 +3,8 @@ import { parseSnowCoveredOrBaseLand } from 'mtg-base-land';
 
 export function filterLands<T extends ICardOfLibraryBase = ICardOfLibraryBase>(cards: T[])
 {
-	return cards.reduce((data, card) => {
+	return cards.reduce((data, card) =>
+	{
 
 		let info = parseSnowCoveredOrBaseLand(card.name);
 

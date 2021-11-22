@@ -13,21 +13,23 @@ export function distributeGroup<T extends ICardOfLibraryBase = ICardOfLibraryBas
 	do
 	{
 
-		for (let j in names)
+		for (let name of names)
 		{
-			let name = names[j];
-
 			card = group[name]?.pop();
 
 			if (card)
 			{
-				i = ++i % arr.length;
-				arr[i].push(card);
+				arr[i % arr.length].push(card);
 			}
 			else
 			{
 				delete group[name]
 			}
+		}
+
+		if (card)
+		{
+			i++;
 		}
 
 	}

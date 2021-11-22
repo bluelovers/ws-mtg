@@ -1,5 +1,3 @@
-
-import _random from 'random-extra';
 import { seedrandom } from 'random-extra/preset/seedrandom';
 import { IOptionsDeckLibraryWithShuffle } from '../types';
 import { Random } from 'random-extra/src';
