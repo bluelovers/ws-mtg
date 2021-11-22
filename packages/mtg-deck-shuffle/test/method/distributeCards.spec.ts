@@ -1,0 +1,53 @@
+import { readFile } from 'fs-extra';
+import { Decklist } from 'mtg-decklist-parser2';
+import { DeckLibraryWithShuffle } from '../../src/library';
+import { ICardOfLibraryBase } from 'mtg-decklist-to-library';
+import { join } from 'path';
+import { __root } from '../__root';
+import { groupByName } from '../../src/util/groupByName';
+import { distributeGroup } from '../../src/util/distributeGroup';
+import distributeCards from '../../src/method/distributeCards';
+import { sumGroupCards } from '../../src/util/sumGroupCards';
+
+describe(`distributeCards`, () =>
+{
+
+	let cards: ICardOfLibraryBase[];
+
+	beforeEach(async () =>
+	{
+		cards = await readFile(join(__root, 'test', 'deck/whiteline.txt'))
+			.then(rawString => new Decklist(rawString))
+			.then(parsed =>
+			{
+				return new DeckLibraryWithShuffle(parsed).cards
+			})
+	});
+
+	test(`groupByName`, () =>
+	{
+
+		let actual = groupByName(cards);
+
+		expect(actual).toMatchSnapshot();
+
+		expect(sumGroupCards(actual)).toStrictEqual(cards.length);
+
+		let actual2 = distributeGroup(actual);
+
+		expect(actual2).toMatchSnapshot();
+		expect(actual2).toHaveProperty('length', cards.length);
+
+	});
+
+	test(`distributeCards`, () =>
+	{
+
+		let actual = distributeCards(cards);
+
+		expect(actual).toMatchSnapshot();
+		expect(actual).toHaveProperty('length', cards.length);
+
+	});
+
+});

@@ -1,0 +1,52 @@
+Deck
+1 Goldspan Dragon (KHM) 139
+4 Kalain, Reclusive Painter (AFR) 225
+3 Poison the Cup (KHM) 103
+11 Snow-Covered Mountain (KHM) 282
+2 Skullport Merchant (AFR) 120
+1 Soul Shatter (ZNR) 127
+1 Westgate Regent (AFR) 126
+2 Hoarding Ogre (AFR) 146
+4 Sulfurous Mire (KHM) 270
+1 Forsworn Paladin (AFR) 104
+1 Xorn (AFR) 167
+1 Orcus, Prince of Undeath (AFR) 229
+2 Immersturm Predator (KHM) 214
+1 Blightstep Pathway (KHM) 252
+11 Snow-Covered Swamp (KHM) 280
+1 Ogre Battledriver (ANB) 80
+2 Demonic Gifts (KHM) 84
+3 Shambling Ghast (AFR) 119
+2 Sudden Breakthrough (STX) 116
+2 Deadly Dispute (AFR) 94
+1 Infernal Grasp (MID) 107
+2 You Find Some Prisoners (AFR) 169
+1 Wake to Slaughter (MID) 250
+1 Drana, the Last Bloodchief (ZNR) 98
+1 Frost Bite (KHM) 138
+3 Unlikely Aid (ANB) 64
+1 Baleful Mastery (STX) 64
+1 Shadows' Verdict (ZNR) 124
+1 Olivia, Crimson Bride (VOW) 245
+1 Florian, Voldaren Scion (MID) 223
+1 Delina, Wild Mage (AFR) 138
+1 Mind Carver (ZNR) 113
+1 Zephyr Boots (STX) 261
+1 Thieves' Tools (AFR) 122
+1 Team Pennant (STX) 260
+1 Goldvein Pick (KHM) 239
+1 Ceremonial Knife (VOW) 254
+1 Haunted Ridge (MID) 263
+1 Shimmerdrift Vale (KHM) 267
+1 Access Tunnel (STX) 262
+1 Barbarian Class (AFR) 131
+1 Rune of Mortality (KHM) 108
+1 The Meathook Massacre (MID) 112
+1 Necrosynthesis (MID) 115
+1 Rune of Speed (KHM) 148
+1 Runed Crown (KHM) 245
+1 Cliffhaven Kitesail (ZNR) 243
+1 Eternal Thirst (ANB) 49
+3 Demon Bolt (KHM) 129
+2 Power Word Kill (AFR) 114
+2 Professor's Warning (STX) 84

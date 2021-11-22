@@ -1,0 +1,62 @@
+{
+  "name": "mtg-deck-shuffle",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "mtg",
+    "magic the gathering",
+    "decklist",
+    "card",
+    "library",
+    "shuffle",
+    "parser"
+  ],
+  "license": "ISC",
+  "author": "bluelovers",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "coverage": "yarn run test -- --coverage",
+    "lint": "ynpx --quiet eslint -- **/*.ts",
+    "test": "jest --passWithNoTests",
+    "test:jest": "jest --passWithNoTests",
+    "test:mocha": "ynpx --quiet -p ts-node -p mocha mocha -- --require ts-node/register \"!(node_modules)/**/*.{test,spec}.{ts,tsx}\"",
+    "posttest": "yarn run build",
+    "build": "yarn run build:tsdx && yarn run build:dts",
+    "build:dts": "ynpx dts-bundle-generator -o ./dist/index.d.ts ./src/index.ts --no-banner",
+    "build:tsdx": "tsdx build --target node --name index",
+    "preversion": "echo preversion && yarn run test",
+    "version": "echo version",
+    "postversion": "echo postversion",
+    "prepublish": "echo prepublish",
+    "prepublishOnly": "echo prepublishOnly",
+    "prepublishOnly:update": "yarn run ncu && yarn run sort-package-json",
+    "publish": "echo publish",
+    "postpublish": "echo postpublish",
+    "postpublishOnly": "echo postpublishOnly",
+    "ncu": "yarn-tool ncu -u",
+    "sort-package-json": "yarn-tool sort",
+    "tsc:showConfig": "ynpx get-current-tsconfig -p"
+  },
+  "dependencies": {
+    "array-chunk-split": "^1.0.6",
+    "bluebird": "^3.7.2",
+    "fs-extra": "^10.0.0",
+    "mtg-base-land": "^1.0.0",
+    "mtg-decklist-parser2": "^2.0.4",
+    "mtg-decklist-to-library": "^1.0.0",
+    "random-extra": "^3.6.16",
+    "seedrandom": "^3.0.5",
+    "ts-type": "^2.0.1",
+    "tslib": "^2.3.1"
+  },
+  "devDependencies": {
+    "@types/bluebird": "^3.5.36",
+    "@types/fs-extra": "^9.0.13",
+    "@types/seedrandom": "^3.0.1"
+  },
+  "peerDependencies": {},
+  "packageManager": "yarn@^1.22.11"
+}
