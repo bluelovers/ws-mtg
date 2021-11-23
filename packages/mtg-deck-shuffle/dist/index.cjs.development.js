@@ -1,5 +1,7 @@
 'use strict';
 
+Object.defineProperty(exports, '__esModule', { value: true });
+
 var mtgDecklistToLibrary = require('mtg-decklist-to-library');
 var seedrandom = require('random-extra/preset/seedrandom');
 var arrayChunkSplit = require('array-chunk-split');

@@ -1,5 +1,7 @@
 'use strict';
 
+Object.defineProperty(exports, '__esModule', { value: true });
+
 var mtgDecklistParser2 = require('mtg-decklist-parser2');
 
 function _defineProperty(obj, key, value) {
