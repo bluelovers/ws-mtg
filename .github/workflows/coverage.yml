@@ -22,7 +22,7 @@ jobs:
       - name: install
         run: |
           yarn install --frozen-lockfile
-          yarn add typescript@next ts-jest
+          yarn add typescript@next ts-jest -W
       - uses: artiomtr/jest-coverage-report-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
