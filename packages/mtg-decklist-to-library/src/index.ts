@@ -6,12 +6,12 @@ export type ICardOfLibrary<T = {}> = ICardWithoutAmount & T
 
 const STARTING_HAND_SIZE = 7 as const
 
-export interface IOptions<T = ICardOfLibrary>
+export interface IOptionsDecklistToLibrary<T = ICardOfLibrary>
 {
 	entryHandler?(entry: ICardWithoutAmount): T
 }
 
-export function listToCardsArray<T = ICardWithoutAmount>(deckCards: ICard[], options?: IOptions<T>): T[]
+export function listToCardsArray<T = ICardWithoutAmount>(deckCards: ICard[], options?: IOptionsDecklistToLibrary<T>): T[]
 {
 	let { entryHandler } = (options ?? {});
 
@@ -36,7 +36,7 @@ export function listToCardsArray<T = ICardWithoutAmount>(deckCards: ICard[], opt
 	}, [] as T[])
 }
 
-export function deckListToCardsArray<T = ICardWithoutAmount>(deck: Decklist, options?: IOptions<T>)
+export function deckListToCardsArray<T = ICardWithoutAmount>(deck: Decklist, options?: IOptionsDecklistToLibrary<T>)
 {
 	return listToCardsArray<T>(deck.deck, options)
 }
@@ -49,7 +49,7 @@ export class DeckLibrary<T = {}>
 
 	public handSize: number = STARTING_HAND_SIZE;
 
-	constructor(public readonly deck: Decklist, options?: IOptions<ICardOfLibrary<T>>)
+	constructor(public readonly deck: Decklist, options?: IOptionsDecklistToLibrary<ICardOfLibrary<T>>)
 	{
 		this.cards = deckListToCardsArray(deck, options);
 	}
