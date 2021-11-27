@@ -1,8 +1,12 @@
 import { Decklist, ICardWithoutAmount } from 'mtg-decklist-parser2';
 import { Random } from 'random-extra/src';
 
+export interface ITSArrayLikeWriteable<T> {
+	readonly length: number;
+	[n: number]: T;
+}
 export declare type ICardOfLibrary<T = {}> = ICardWithoutAmount & T;
-export interface IOptions<T = ICardOfLibrary> {
+export interface IOptionsDecklistToLibrary<T = ICardOfLibrary> {
 	entryHandler?(entry: ICardWithoutAmount): T;
 }
 declare class DeckLibrary<T = {}> {
@@ -10,7 +14,7 @@ declare class DeckLibrary<T = {}> {
 	cards: T[];
 	protected _shuffleStarting: boolean;
 	handSize: number;
-	constructor(deck: Decklist, options?: IOptions<ICardOfLibrary<T>>);
+	constructor(deck: Decklist, options?: IOptionsDecklistToLibrary<ICardOfLibrary<T>>);
 	get length(): number;
 	shuffleStarting(): void;
 	shuffle(isStarting?: boolean): void;

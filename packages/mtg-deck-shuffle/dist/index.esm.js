@@ -2,6 +2,8 @@ import { DeckLibrary } from 'mtg-decklist-to-library';
 import { seedrandom } from 'random-extra/preset/seedrandom';
 import { arrayChunkSplit } from 'array-chunk-split';
 import { parseSnowCoveredOrBaseLand } from 'mtg-base-land';
+import { arrayGroupToRecord } from 'array-group-to-record';
+import { distributeGroupToArray, _createGroupArray } from 'distribute-group-to-array';
 
 function getRandomFromOptions(options) {
   var _options$random;
@@ -40,55 +42,23 @@ function filterLands(cards) {
 }
 
 function groupByName(cards) {
-  return cards.reduce((map, card) => {
-    var _card$name, _map$_card$name;
+  return arrayGroupToRecord(cards, {
+    getKey(item, index, arr) {
+      return item.name;
+    }
 
-    (_map$_card$name = map[_card$name = card.name]) !== null && _map$_card$name !== void 0 ? _map$_card$name : map[_card$name] = [];
-    map[card.name].push(card);
-    return map;
-  }, {});
-}
-
-function createGroupArray(length) {
-  const arr = [];
-
-  for (let i = 0; i < length; i++) {
-    arr.push([]);
-  }
-
-  return arr;
+  });
 }
 
 function distributeGroup(group) {
-  let arr = createGroupArray(4);
-  const names = Object.keys(group);
-  let card;
-  let i = arr.length - 1;
-
-  do {
-    for (let name of names) {
-      var _group$name;
-
-      card = (_group$name = group[name]) === null || _group$name === void 0 ? void 0 : _group$name.pop();
-
-      if (card) {
-        arr[i % arr.length].push(card);
-      } else {
-        delete group[name];
-      }
-    }
-
-    if (card) {
-      i++;
-    }
-  } while (Object.keys(group).length);
-
-  return arr.flat();
+  return distributeGroupToArray(group, {
+    groupArraySize: 4
+  });
 }
 
 function distributeCards(cards, options, self) {
   let data = filterLands(cards);
-  let arr = createGroupArray(4);
+  let arr = _createGroupArray(4);
   let idx = 0;
   data.baseLands = distributeGroup(groupByName(data.baseLands));
   data.snowLands = distributeGroup(groupByName(data.snowLands));

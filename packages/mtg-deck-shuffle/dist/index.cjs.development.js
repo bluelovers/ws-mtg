@@ -6,6 +6,8 @@ var mtgDecklistToLibrary = require('mtg-decklist-to-library');
 var seedrandom = require('random-extra/preset/seedrandom');
 var arrayChunkSplit = require('array-chunk-split');
 var mtgBaseLand = require('mtg-base-land');
+var arrayGroupToRecord = require('array-group-to-record');
+var distributeGroupToArray = require('distribute-group-to-array');
 
 function getRandomFromOptions(options) {
   var _options$random;
@@ -44,55 +46,23 @@ function filterLands(cards) {
 }
 
 function groupByName(cards) {
-  return cards.reduce((map, card) => {
-    var _card$name, _map$_card$name;
+  return arrayGroupToRecord.arrayGroupToRecord(cards, {
+    getKey(item, index, arr) {
+      return item.name;
+    }
 
-    (_map$_card$name = map[_card$name = card.name]) !== null && _map$_card$name !== void 0 ? _map$_card$name : map[_card$name] = [];
-    map[card.name].push(card);
-    return map;
-  }, {});
-}
-
-function createGroupArray(length) {
-  const arr = [];
-
-  for (let i = 0; i < length; i++) {
-    arr.push([]);
-  }
-
-  return arr;
+  });
 }
 
 function distributeGroup(group) {
-  let arr = createGroupArray(4);
-  const names = Object.keys(group);
-  let card;
-  let i = arr.length - 1;
-
-  do {
-    for (let name of names) {
-      var _group$name;
-
-      card = (_group$name = group[name]) === null || _group$name === void 0 ? void 0 : _group$name.pop();
-
-      if (card) {
-        arr[i % arr.length].push(card);
-      } else {
-        delete group[name];
-      }
-    }
-
-    if (card) {
-      i++;
-    }
-  } while (Object.keys(group).length);
-
-  return arr.flat();
+  return distributeGroupToArray.distributeGroupToArray(group, {
+    groupArraySize: 4
+  });
 }
 
 function distributeCards(cards, options, self) {
   let data = filterLands(cards);
-  let arr = createGroupArray(4);
+  let arr = distributeGroupToArray._createGroupArray(4);
   let idx = 0;
   data.baseLands = distributeGroup(groupByName(data.baseLands));
   data.snowLands = distributeGroup(groupByName(data.snowLands));

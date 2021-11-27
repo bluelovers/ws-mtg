@@ -1,13 +1,11 @@
 import { ICardWithoutAmount } from 'mtg-decklist-parser2';
+import { arrayGroupToRecord } from 'array-group-to-record';
 
 export function groupByName<T extends ICardWithoutAmount = ICardWithoutAmount>(cards: T[])
 {
-	return cards.reduce((map, card) =>
-	{
-
-		map[card.name] ??= [];
-		map[card.name].push(card);
-
-		return map
-	}, {} as Record<string, T[]>);
+	return arrayGroupToRecord(cards, {
+		getKey(item: T, index: number, arr: T[]): string {
+			return item.name
+		},
+	})
 }
