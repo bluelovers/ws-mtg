@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`['WR', 'W' ] 1`] = `
+Array [
+  "W",
+  "WR",
+]
+`;
+
+exports[`WU, UB, BR, RG, GW, WB, UR, BG, RW, GU 1`] = `
+Array [
+  "WU",
+  "WB",
+  "UB",
+  "UR",
+  "BR",
+  "BG",
+  "RW",
+  "RG",
+  "GW",
+  "GU",
+]
+`;
