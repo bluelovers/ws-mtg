@@ -1,6 +1,6 @@
 import { ICardWithoutAmount } from 'mtg-decklist-parser2';
 import { splitChunk } from '../util/splitChunk';
-import { getRandomFromOptions } from '../util/rand';
+import { getRandomFromOptions, rngArrayShuffle } from '../util/rand';
 import { IOptionsDeckLibraryWithShuffle } from '../types';
 import { DeckLibraryWithShuffle } from '../library';
 
@@ -14,7 +14,7 @@ export function splitThenMerge<T = ICardWithoutAmount>(cards: T[],
 {
 	let arr = splitChunk(cards, options?.maxChunkLength)
 
-	return getRandomFromOptions(options).arrayShuffle(arr, true).flat()
+	return rngArrayShuffle(getRandomFromOptions(options), arr, true).flat()
 }
 
 export default splitThenMerge

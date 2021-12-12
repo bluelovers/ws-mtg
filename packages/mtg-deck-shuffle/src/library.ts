@@ -1,10 +1,11 @@
 import { DeckLibrary, ICardOfLibrary } from 'mtg-decklist-to-library';
 import { IOptionsDeckLibraryWithShuffle } from './types';
-import { getRandomFromOptions } from './util/rand';
+import { getRandomFromOptions, rngArrayShuffle } from './util/rand';
 import { splitThenMerge } from './method/splitThenMerge';
 import { Decklist } from 'mtg-decklist-parser2';
 import { distributeCards } from './method/distributeCards';
 import { ensureLands } from './method/ensureLands';
+import { int } from '@lazy-random/util-distributions';
 
 export class DeckLibraryWithShuffle<T = {}> extends DeckLibrary<ICardOfLibrary<T>>
 {
@@ -30,7 +31,7 @@ export class DeckLibraryWithShuffle<T = {}> extends DeckLibrary<ICardOfLibrary<T
 
 		const random = getRandomFromOptions(options);
 
-		options.ensureLands ??= random.int(0, 2);
+		options.ensureLands ??= int(random, 0, 2);
 
 		let cards = [
 			distributeCards,
@@ -51,7 +52,7 @@ export class DeckLibraryWithShuffle<T = {}> extends DeckLibrary<ICardOfLibrary<T
 
 		}
 
-		random.arrayShuffle(this.cards, true);
+		rngArrayShuffle(random, this.cards, true);
 	}
 
 }

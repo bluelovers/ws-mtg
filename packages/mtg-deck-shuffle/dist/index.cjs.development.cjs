@@ -1,29 +1,46 @@
-import { DeckLibrary } from 'mtg-decklist-to-library';
-import { seedrandom } from 'random-extra/preset/seedrandom';
-import { arrayChunkSplit } from 'array-chunk-split';
-import { parseSnowCoveredOrBaseLand } from 'mtg-base-land';
-import { arrayGroupToRecord } from 'array-group-to-record';
-import { distributeGroupToArray, _createGroupArray } from 'distribute-group-to-array';
+'use strict';
 
+Object.defineProperty(exports, '__esModule', { value: true });
+
+var mtgDecklistToLibrary = require('mtg-decklist-to-library');
+var simpleWrap = require('@lazy-random/simple-wrap');
+var originalMathRandom = require('@lazy-random/original-math-random');
+var dfArray = require('@lazy-random/df-array');
+var arrayChunkSplit = require('array-chunk-split');
+var mtgBaseLand = require('mtg-base-land');
+var arrayGroupToRecord = require('array-group-to-record');
+var distributeGroupToArray = require('distribute-group-to-array');
+var utilDistributions = require('@lazy-random/util-distributions');
+
+let _cacheRNG;
+
+function defaultRNG() {
+  var _cacheRNG2;
+
+  return (_cacheRNG2 = _cacheRNG) !== null && _cacheRNG2 !== void 0 ? _cacheRNG2 : _cacheRNG = simpleWrap.simpleWrap(originalMathRandom._MathRandom);
+}
 function getRandomFromOptions(options) {
   var _options$random;
 
-  const random = (_options$random = options === null || options === void 0 ? void 0 : options.random) !== null && _options$random !== void 0 ? _options$random : seedrandom;
+  const random = (_options$random = options === null || options === void 0 ? void 0 : options.random) !== null && _options$random !== void 0 ? _options$random : defaultRNG();
   return random;
+}
+function rngArrayShuffle(random, arr, overwrite) {
+  return dfArray.dfArrayShuffle(random, arr, overwrite)();
 }
 
 function splitChunk(cards, maxChunkLength) {
-  return arrayChunkSplit(cards, maxChunkLength !== null && maxChunkLength !== void 0 ? maxChunkLength : 12);
+  return arrayChunkSplit.arrayChunkSplit(cards, maxChunkLength !== null && maxChunkLength !== void 0 ? maxChunkLength : 12);
 }
 
 function splitThenMerge(cards, options, self) {
   let arr = splitChunk(cards, options === null || options === void 0 ? void 0 : options.maxChunkLength);
-  return getRandomFromOptions(options).arrayShuffle(arr, true).flat();
+  return rngArrayShuffle(getRandomFromOptions(options), arr, true).flat();
 }
 
 function filterLands(cards) {
   return cards.reduce((data, card) => {
-    let info = parseSnowCoveredOrBaseLand(card.name);
+    let info = mtgBaseLand.parseSnowCoveredOrBaseLand(card.name);
 
     if (!info) {
       data.others.push(card);
@@ -42,7 +59,7 @@ function filterLands(cards) {
 }
 
 function groupByName(cards) {
-  return arrayGroupToRecord(cards, {
+  return arrayGroupToRecord.arrayGroupToRecord(cards, {
     getKey(item, index, arr) {
       return item.name;
     }
@@ -51,14 +68,14 @@ function groupByName(cards) {
 }
 
 function distributeGroup(group) {
-  return distributeGroupToArray(group, {
+  return distributeGroupToArray.distributeGroupToArray(group, {
     groupArraySize: 4
   });
 }
 
 function distributeCards(cards, options, self) {
   let data = filterLands(cards);
-  let arr = _createGroupArray(4);
+  let arr = distributeGroupToArray._createGroupArray(4);
   let idx = 0;
   data.baseLands = distributeGroup(groupByName(data.baseLands));
   data.snowLands = distributeGroup(groupByName(data.snowLands));
@@ -86,7 +103,7 @@ function findIndexOfLands(cards, startIndex) {
   startIndex |= 0;
   return cards.reduce((list, card, idx) => {
     if (idx >= startIndex) {
-      let info = parseSnowCoveredOrBaseLand(card.name);
+      let info = mtgBaseLand.parseSnowCoveredOrBaseLand(card.name);
 
       if (info) {
         list.push(idx);
@@ -123,8 +140,8 @@ function ensureLands(cards, options, self) {
   if (diff > 0) {
     const idxLandArray = findIndexOfLands(cards, self.handSize);
     const random = getRandomFromOptions(options);
-    const fnLibraryLand = random.dfArrayUnique(idxLandArray, diff);
-    let fnHandCard = random.dfArrayUnique(data.others, diff);
+    const fnLibraryLand = dfArray.dfArrayUnique(random, idxLandArray, diff);
+    let fnHandCard = dfArray.dfArrayUnique(random, data.others, diff);
 
     for (let i = 0; i < diff; i++) {
       const card = fnHandCard();
@@ -147,7 +164,7 @@ function ensureLands(cards, options, self) {
   return cards;
 }
 
-class DeckLibraryWithShuffle extends DeckLibrary {
+class DeckLibraryWithShuffle extends mtgDecklistToLibrary.DeckLibrary {
   constructor(deck, options) {
     super(deck, options);
   }
@@ -163,7 +180,7 @@ class DeckLibraryWithShuffle extends DeckLibrary {
 
     let options = this.options();
     const random = getRandomFromOptions(options);
-    (_options$ensureLands = options.ensureLands) !== null && _options$ensureLands !== void 0 ? _options$ensureLands : options.ensureLands = random.int(0, 2);
+    (_options$ensureLands = options.ensureLands) !== null && _options$ensureLands !== void 0 ? _options$ensureLands : options.ensureLands = utilDistributions.int(random, 0, 2);
     let cards = [distributeCards, splitThenMerge, ensureLands].reduce((cards, fn) => fn(cards, options, this), this.cards);
     this.cards = cards;
     this._shuffleStarting = true;
@@ -172,10 +189,14 @@ class DeckLibraryWithShuffle extends DeckLibrary {
   shuffle(isStarting) {
     let random = getRandomFromOptions(this.options());
 
-    random.arrayShuffle(this.cards, true);
+    rngArrayShuffle(random, this.cards, true);
   }
 
 }
 
-export { DeckLibraryWithShuffle, DeckLibraryWithShuffle as default, distributeCards, ensureLands, splitThenMerge };
-//# sourceMappingURL=index.esm.js.map
+exports.DeckLibraryWithShuffle = DeckLibraryWithShuffle;
+exports["default"] = DeckLibraryWithShuffle;
+exports.distributeCards = distributeCards;
+exports.ensureLands = ensureLands;
+exports.splitThenMerge = splitThenMerge;
+//# sourceMappingURL=index.cjs.development.cjs.map

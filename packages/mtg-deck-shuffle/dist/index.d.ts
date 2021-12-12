@@ -1,10 +1,6 @@
+import { IRNGLike } from '@lazy-random/rng-abstract';
 import { Decklist, ICardWithoutAmount } from 'mtg-decklist-parser2';
-import { Random } from 'random-extra/src';
 
-export interface ITSArrayLikeWriteable<T> {
-	readonly length: number;
-	[n: number]: T;
-}
 export declare type ICardOfLibrary<T = {}> = ICardWithoutAmount & T;
 export interface IOptionsDecklistToLibrary<T = ICardOfLibrary> {
 	entryHandler?(entry: ICardWithoutAmount): T;
@@ -25,7 +21,7 @@ declare class DeckLibrary<T = {}> {
 }
 export interface IOptionsDeckLibraryWithShuffle<T = ICardOfLibrary> extends IOptionsDecklistToLibrary<T> {
 	maxChunkLength?: number;
-	random?: Random;
+	random?: IRNGLike;
 	ensureLands?: number | boolean;
 }
 export declare class DeckLibraryWithShuffle<T = {}> extends DeckLibrary<ICardOfLibrary<T>> {

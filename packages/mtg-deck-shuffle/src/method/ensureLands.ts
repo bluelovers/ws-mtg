@@ -4,6 +4,7 @@ import { DeckLibraryWithShuffle } from '../library';
 import { filterLands } from '../util/filterLands';
 import { findIndexOfLands } from '../util/findIndexOfLands';
 import { getRandomFromOptions } from '../util/rand';
+import { dfArrayUnique } from '@lazy-random/df-array';
 
 /**
  * ensure always has lands when handSize >= 6
@@ -54,9 +55,9 @@ export function ensureLands<T extends ICardWithoutAmount = ICardWithoutAmount>(c
 
 		const random = getRandomFromOptions(options);
 
-		const fnLibraryLand = random.dfArrayUnique(idxLandArray, diff);
+		const fnLibraryLand = dfArrayUnique(random, idxLandArray, diff);
 
-		let fnHandCard = random.dfArrayUnique(data.others, diff);
+		let fnHandCard = dfArrayUnique(random, data.others, diff);
 
 		for (let i = 0; i < diff; i++)
 		{

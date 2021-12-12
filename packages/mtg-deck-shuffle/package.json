@@ -41,23 +41,26 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "array-chunk-split": "^1.0.6",
+    "@lazy-random/df-array": "^1.0.3",
+    "@lazy-random/df-uniform": "^1.0.4",
+    "@lazy-random/original-math-random": "^1.0.5",
+    "@lazy-random/rng-abstract": "^1.0.4",
+    "@lazy-random/simple-wrap": "^1.0.5",
+    "@lazy-random/util-distributions": "^1.0.3",
+    "array-chunk-split": "^2.0.8",
     "array-group-to-record": "^1.0.3",
     "bluebird": "^3.7.2",
     "distribute-group-to-array": "^1.0.3",
     "fs-extra": "^10.0.0",
     "mtg-base-land": "^1.0.2",
-    "mtg-decklist-parser2": "^2.0.6",
+    "mtg-decklist-parser2": "^2.0.12",
     "mtg-decklist-to-library": "^1.0.4",
-    "random-extra": "^3.6.16",
-    "seedrandom": "^3.0.5",
-    "ts-type": "^2.0.1",
+    "ts-type": "^2.1.2",
     "tslib": "^2.3.1"
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.36",
-    "@types/fs-extra": "^9.0.13",
-    "@types/seedrandom": "^3.0.1"
+    "@types/fs-extra": "^9.0.13"
   },
   "packageManager": "yarn@^1.22.11"
 }
