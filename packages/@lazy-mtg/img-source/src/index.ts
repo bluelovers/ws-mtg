@@ -1,5 +1,12 @@
-import type { ICardWithoutAmount } from 'mtg-decklist-parser2';
 import type { ITSAndStringLiteral } from 'ts-type/lib/helper/string';
+import {
+	_handleName,
+	_padZero,
+	_toURL,
+	ICardForQueryInfo,
+	ILinkURLConfig,
+	EnumScryfallLanguages,
+} from '@lazy-mtg/link-source';
 
 export const enum EnumImgSource
 {
@@ -12,17 +19,6 @@ export const enum EnumImgSource
 	magicCardsInfo = 'magicCardsInfo',
 }
 
-function pad(num: string | number, size: number)
-{
-	return String(num).padStart(size, '0')
-}
-
-export interface ICardForQueryInfo extends Partial<Omit<ICardWithoutAmount, 'mtgoID'>>
-{
-	multiverseid?: string | number,
-	mtgoID?: string | number,
-}
-
 export enum EnumScryfallImageFormat
 {
 	small = 'small',
@@ -33,10 +29,9 @@ export enum EnumScryfallImageFormat
 	border_crop = 'border_crop',
 }
 
-export interface IImageURLConfig
+export interface IImageURLConfig extends ILinkURLConfig
 {
 	imgSource?: ITSAndStringLiteral<EnumImgSource>,
-	language?: string,
 
 	/**
 	 * only for scryfall
@@ -45,18 +40,13 @@ export interface IImageURLConfig
 	imageFaceBack?: boolean,
 }
 
-function handleName(name: string)
-{
-	return name.split(/\s*\/\/\s*/)[0]
-}
-
 export function getImageSourceURL(card: ICardForQueryInfo, config?: IImageURLConfig)
 {
-	let imgUrl: URL | string;
+	let linkUrl: URL | string;
 
 	const cardNum = card.collectors;
 
-	switch (config?.imgSource)
+	switch (config?.imgSource ?? config?.linkSource)
 	{
 		case EnumImgSource.magicCardsInfo:
 		case EnumImgSource.scryfall:
@@ -65,17 +55,17 @@ export function getImageSourceURL(card: ICardForQueryInfo, config?: IImageURLCon
 			{
 				if (card.multiverseid)
 				{
-					imgUrl = `https://api.scryfall.com/cards/multiverse/${card.multiverseid}?format=image`
+					linkUrl = `https://api.scryfall.com/cards/multiverse/${card.multiverseid}?format=image`
 				}
 				else if (card.mtgoID)
 				{
-					imgUrl = new URL(`https://api.scryfall.com/cards/mtgo/${card.mtgoID}`);
+					linkUrl = new URL(`https://api.scryfall.com/cards/mtgo/${card.mtgoID}`);
 				}
 				else if (card.name?.length > 0)
 				{
-					imgUrl = new URL(`https://api.scryfall.com/cards/named`);
+					linkUrl = new URL(`https://api.scryfall.com/cards/named`);
 
-					imgUrl.searchParams.set('fuzzy', card.name);
+					linkUrl.searchParams.set('fuzzy', card.name);
 				}
 				else
 				{
@@ -84,26 +74,23 @@ export function getImageSourceURL(card: ICardForQueryInfo, config?: IImageURLCon
 			}
 			else
 			{
-				const language = config?.language ?? 'en';
+				const language = config?.language ?? EnumScryfallLanguages.English;
 
-				imgUrl = `https://api.scryfall.com/cards/${card.set!.toLowerCase()}/${cardNum}/${language}`
+				linkUrl = `https://api.scryfall.com/cards/${card.set!.toLowerCase()}/${cardNum}/${language}`
 			}
 
-			if (typeof imgUrl === 'string')
-			{
-				imgUrl = new URL(imgUrl);
-			}
+			linkUrl = _toURL(linkUrl);
 
-			imgUrl.searchParams.set('format', 'image');
+			linkUrl.searchParams.set('format', 'image');
 
 			if (config?.imageFormat)
 			{
-				imgUrl.searchParams.set('version', config.imageFormat);
+				linkUrl.searchParams.set('version', config.imageFormat);
 			}
 
 			if (config?.imageFaceBack)
 			{
-				imgUrl.searchParams.set('face', 'back');
+				linkUrl.searchParams.set('face', 'back');
 			}
 
 			break
@@ -114,14 +101,14 @@ export function getImageSourceURL(card: ICardForQueryInfo, config?: IImageURLCon
 				throw new TypeError(`Invalid collector number: ${cardNum}`)
 			}
 
-			let paddedNum = pad(cardNum, 3);
+			let paddedNum = _padZero(cardNum, 3);
 			// @ts-ignore
 			if (isNaN(paddedNum.slice(-1)))
 			{
-				paddedNum = pad(paddedNum, 4);
+				paddedNum = _padZero(paddedNum, 4);
 			}
 
-			imgUrl = `https://s3.urza.co/cards/${card.set!.toLowerCase()}/front/200dpi/${paddedNum}.jpg`;
+			linkUrl = `https://s3.urza.co/cards/${card.set!.toLowerCase()}/front/200dpi/${paddedNum}.jpg`;
 
 			break
 		default:
@@ -129,9 +116,9 @@ export function getImageSourceURL(card: ICardForQueryInfo, config?: IImageURLCon
 			{
 				if (card.name?.length)
 				{
-					imgUrl = new URL(`https://gatherer.wizards.com/Handlers/Image.ashx?type=card`)
+					linkUrl = new URL(`https://gatherer.wizards.com/Handlers/Image.ashx?type=card`)
 
-					imgUrl.searchParams.set('name', handleName(card.name));
+					linkUrl.searchParams.set('name', _handleName(card.name));
 				}
 				else
 				{
@@ -140,18 +127,13 @@ export function getImageSourceURL(card: ICardForQueryInfo, config?: IImageURLCon
 			}
 			else
 			{
-				imgUrl = `https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=${card.multiverseid}&type=card`
+				linkUrl = `https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=${card.multiverseid}&type=card`
 			}
 
 			break
 	}
 
-	if (typeof imgUrl === 'string')
-	{
-		imgUrl = new URL(imgUrl);
-	}
-
-	return imgUrl
+	return _toURL(linkUrl)
 }
 
 export default getImageSourceURL

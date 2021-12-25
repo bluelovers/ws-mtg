@@ -1,3 +1,5 @@
+import { _handleName, _padZero, _toURL } from '@lazy-mtg/link-source';
+
 var EnumImgSource;
 
 (function (EnumImgSource) {
@@ -6,10 +8,6 @@ var EnumImgSource;
   EnumImgSource["scryfall"] = "scryfall";
   EnumImgSource["magicCardsInfo"] = "magicCardsInfo";
 })(EnumImgSource || (EnumImgSource = {}));
-
-function pad(num, size) {
-  return String(num).padStart(size, '0');
-}
 
 var EnumScryfallImageFormat;
 
@@ -22,49 +20,44 @@ var EnumScryfallImageFormat;
   EnumScryfallImageFormat["border_crop"] = "border_crop";
 })(EnumScryfallImageFormat || (EnumScryfallImageFormat = {}));
 
-function handleName(name) {
-  return name.split(/\s*\/\/\s*/)[0];
-}
-
 function getImageSourceURL(card, config) {
-  let imgUrl;
+  var _config$imgSource;
+
+  let linkUrl;
   const cardNum = card.collectors;
 
-  switch (config === null || config === void 0 ? void 0 : config.imgSource) {
+  switch ((_config$imgSource = config === null || config === void 0 ? void 0 : config.imgSource) !== null && _config$imgSource !== void 0 ? _config$imgSource : config === null || config === void 0 ? void 0 : config.linkSource) {
     case "magicCardsInfo":
     case "scryfall":
       if (!cardNum) {
         var _card$name;
 
         if (card.multiverseid) {
-          imgUrl = `https://api.scryfall.com/cards/multiverse/${card.multiverseid}?format=image`;
+          linkUrl = `https://api.scryfall.com/cards/multiverse/${card.multiverseid}?format=image`;
         } else if (card.mtgoID) {
-          imgUrl = new URL(`https://api.scryfall.com/cards/mtgo/${card.mtgoID}`);
+          linkUrl = new URL(`https://api.scryfall.com/cards/mtgo/${card.mtgoID}`);
         } else if (((_card$name = card.name) === null || _card$name === void 0 ? void 0 : _card$name.length) > 0) {
-          imgUrl = new URL(`https://api.scryfall.com/cards/named`);
-          imgUrl.searchParams.set('fuzzy', card.name);
+          linkUrl = new URL(`https://api.scryfall.com/cards/named`);
+          linkUrl.searchParams.set('fuzzy', card.name);
         } else {
           throw new TypeError(`Invalid collector number: ${cardNum}`);
         }
       } else {
         var _config$language;
 
-        const language = (_config$language = config === null || config === void 0 ? void 0 : config.language) !== null && _config$language !== void 0 ? _config$language : 'en';
-        imgUrl = `https://api.scryfall.com/cards/${card.set.toLowerCase()}/${cardNum}/${language}`;
+        const language = (_config$language = config === null || config === void 0 ? void 0 : config.language) !== null && _config$language !== void 0 ? _config$language : "en";
+        linkUrl = `https://api.scryfall.com/cards/${card.set.toLowerCase()}/${cardNum}/${language}`;
       }
 
-      if (typeof imgUrl === 'string') {
-        imgUrl = new URL(imgUrl);
-      }
-
-      imgUrl.searchParams.set('format', 'image');
+      linkUrl = _toURL(linkUrl);
+      linkUrl.searchParams.set('format', 'image');
 
       if (config !== null && config !== void 0 && config.imageFormat) {
-        imgUrl.searchParams.set('version', config.imageFormat);
+        linkUrl.searchParams.set('version', config.imageFormat);
       }
 
       if (config !== null && config !== void 0 && config.imageFaceBack) {
-        imgUrl.searchParams.set('face', 'back');
+        linkUrl.searchParams.set('face', 'back');
       }
 
       break;
@@ -74,13 +67,13 @@ function getImageSourceURL(card, config) {
         throw new TypeError(`Invalid collector number: ${cardNum}`);
       }
 
-      let paddedNum = pad(cardNum, 3);
+      let paddedNum = _padZero(cardNum, 3);
 
       if (isNaN(paddedNum.slice(-1))) {
-        paddedNum = pad(paddedNum, 4);
+        paddedNum = _padZero(paddedNum, 4);
       }
 
-      imgUrl = `https://s3.urza.co/cards/${card.set.toLowerCase()}/front/200dpi/${paddedNum}.jpg`;
+      linkUrl = `https://s3.urza.co/cards/${card.set.toLowerCase()}/front/200dpi/${paddedNum}.jpg`;
       break;
 
     default:
@@ -88,23 +81,19 @@ function getImageSourceURL(card, config) {
         var _card$name2;
 
         if ((_card$name2 = card.name) !== null && _card$name2 !== void 0 && _card$name2.length) {
-          imgUrl = new URL(`https://gatherer.wizards.com/Handlers/Image.ashx?type=card`);
-          imgUrl.searchParams.set('name', handleName(card.name));
+          linkUrl = new URL(`https://gatherer.wizards.com/Handlers/Image.ashx?type=card`);
+          linkUrl.searchParams.set('name', _handleName(card.name));
         } else {
           throw new TypeError(`Invalid multiverseid: ${card.multiverseid}`);
         }
       } else {
-        imgUrl = `https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=${card.multiverseid}&type=card`;
+        linkUrl = `https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=${card.multiverseid}&type=card`;
       }
 
       break;
   }
 
-  if (typeof imgUrl === 'string') {
-    imgUrl = new URL(imgUrl);
-  }
-
-  return imgUrl;
+  return _toURL(linkUrl);
 }
 
 export { EnumImgSource, EnumScryfallImageFormat, getImageSourceURL as default, getImageSourceURL };

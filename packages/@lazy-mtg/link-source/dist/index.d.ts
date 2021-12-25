@@ -26,32 +26,10 @@ export interface ILinkURLConfig {
 	linkSource?: ITSAndStringLiteral<EnumLinkSource>;
 	language?: ITSAndTypeAndStringLiteral<EnumScryfallLanguages>;
 }
-export declare const enum EnumImgSource {
-	gatherer = "gatherer",
-	urzaCo = "urzaCo",
-	scryfall = "scryfall",
-	/**
-	 * @deprecated
-	 */
-	magicCardsInfo = "magicCardsInfo"
-}
-export declare enum EnumScryfallImageFormat {
-	small = "small",
-	normal = "normal",
-	large = "large",
-	png = "png",
-	art_crop = "art_crop",
-	border_crop = "border_crop"
-}
-export interface IImageURLConfig extends ILinkURLConfig {
-	imgSource?: ITSAndStringLiteral<EnumImgSource>;
-	/**
-	 * only for scryfall
-	 */
-	imageFormat?: ITSAndStringLiteral<EnumScryfallImageFormat>;
-	imageFaceBack?: boolean;
-}
-export declare function getImageSourceURL(card: ICardForQueryInfo, config?: IImageURLConfig): URL;
-export default getImageSourceURL;
+export declare function _handleName(name: string): string;
+export declare function _toURL(linkUrl: URL | string): URL;
+export declare function _padZero(num: string | number, size: number): string;
+export declare function getLinkSourceURL(card: ICardForQueryInfo, config?: ILinkURLConfig): URL;
+export default getLinkSourceURL;
 
 export {};

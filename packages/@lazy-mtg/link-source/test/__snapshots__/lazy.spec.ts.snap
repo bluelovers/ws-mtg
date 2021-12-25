@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`gatherer Sea Gate Restoration // Sea Gate, Reborn 1`] = `"https://gatherer.wizards.com/Pages/Card/Details.aspx?type=card&name=Sea+Gate+Restoration"`;
+
+exports[`gatherer multiverseid=491706 1`] = `"https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=491706&type=card"`;
+
+exports[`scryfall Sea Gate Restoration // Sea Gate, Reborn 1`] = `"https://scryfall.com/search?q=name:/(?%3C=\\\\/\\\\/%20|^)Sea%20Gate%20Restoration%20\\\\/\\\\/%20Sea%20Gate,%20Reborn(?=%20\\\\/\\\\/|$)/"`;
+
+exports[`scryfall Sea Gate Restoration // Sea Gate, Reborn 2`] = `"https://scryfall.com/search?q=name:/(?%3C=\\\\/\\\\/%20|^)Sea%20Gate%20Restoration%20\\\\/\\\\/%20Sea%20Gate,%20Reborn(?=%20\\\\/\\\\/|$)/%20lang:zht"`;
+
+exports[`scryfall mtgoID=83105 1`] = `"https://scryfall.com/search?q=mtgoID=83105"`;
+
+exports[`scryfall multiverseid=491706 1`] = `"https://scryfall.com/search?q=multiverseid=491706"`;

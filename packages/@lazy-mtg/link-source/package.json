@@ -1,5 +1,5 @@
 {
-  "name": "@lazy-mtg/img-source",
+  "name": "@lazy-mtg/link-source",
   "version": "1.0.0",
   "description": "",
   "keywords": [
@@ -13,7 +13,7 @@
     "create-by-yarn-tool",
     "create-by-tsdx"
   ],
-  "homepage": "https://github.com/bluelovers/ws-mtg/tree/master/packages/@lazy-mtg/img-source#readme",
+  "homepage": "https://github.com/bluelovers/ws-mtg/tree/master/packages/@lazy-mtg/link-source#readme",
   "bugs": {
     "url": "https://github.com/bluelovers/ws-mtg/issues"
   },
@@ -60,7 +60,7 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-mtg/link-source": "^1.0.0",
+    "escape-string-regexp": "< 5 >= 4",
     "ts-type": "^2.1.2",
     "tslib": "^2.3.1"
   },
