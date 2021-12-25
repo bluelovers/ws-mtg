@@ -1,4 +1,4 @@
-import type { ITSAndStringLiteral } from 'ts-type/lib/helper/string';
+import type { ITSTypeAndStringLiteral } from 'ts-type/lib/helper/string';
 import {
 	_handleName,
 	_padZero,
@@ -19,7 +19,7 @@ export const enum EnumImgSource
 	magicCardsInfo = 'magicCardsInfo',
 }
 
-export enum EnumScryfallImageFormat
+export const enum EnumScryfallImageFormat
 {
 	small = 'small',
 	normal = 'normal',
@@ -31,12 +31,12 @@ export enum EnumScryfallImageFormat
 
 export interface IImageURLConfig extends ILinkURLConfig
 {
-	imgSource?: ITSAndStringLiteral<EnumImgSource>,
+	imgSource?: ITSTypeAndStringLiteral<EnumImgSource>,
 
 	/**
 	 * only for scryfall
 	 */
-	imageFormat?: ITSAndStringLiteral<EnumScryfallImageFormat>,
+	imageFormat?: ITSTypeAndStringLiteral<EnumScryfallImageFormat>,
 	imageFaceBack?: boolean,
 }
 

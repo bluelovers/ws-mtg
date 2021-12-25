@@ -1,5 +1,5 @@
 import { ICardWithoutAmount } from 'mtg-decklist-parser2';
-import { ITSAndStringLiteral, ITSAndTypeAndStringLiteral } from 'ts-type/lib/helper/string';
+import { ITSAndTypeAndStringLiteral, ITSTypeAndStringLiteral } from 'ts-type/lib/helper/string';
 
 export declare const enum EnumLinkSource {
 	gatherer = "gatherer",
@@ -23,7 +23,7 @@ export declare const enum EnumScryfallLanguages {
 	Phyrexian = "ph"
 }
 export interface ILinkURLConfig {
-	linkSource?: ITSAndStringLiteral<EnumLinkSource>;
+	linkSource?: ITSTypeAndStringLiteral<EnumLinkSource>;
 	language?: ITSAndTypeAndStringLiteral<EnumScryfallLanguages>;
 }
 export declare function _handleName(name: string): string;

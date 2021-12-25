@@ -1,5 +1,5 @@
 import type { ICardWithoutAmount } from 'mtg-decklist-parser2';
-import type { ITSAndStringLiteral, ITSAndTypeAndStringLiteral } from 'ts-type/lib/helper/string';
+import type { ITSAndTypeAndStringLiteral, ITSTypeAndStringLiteral } from 'ts-type/lib/helper/string';
 import escapeStringRegexp from 'escape-string-regexp';
 
 export const enum EnumLinkSource
@@ -32,7 +32,7 @@ export const enum EnumScryfallLanguages
 
 export interface ILinkURLConfig
 {
-	linkSource?: ITSAndStringLiteral<EnumLinkSource>,
+	linkSource?: ITSTypeAndStringLiteral<EnumLinkSource>,
 	language?: ITSAndTypeAndStringLiteral<EnumScryfallLanguages>,
 }
 
