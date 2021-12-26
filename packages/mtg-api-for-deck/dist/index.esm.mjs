@@ -1,5 +1,6 @@
-import { CardModel, AbstractDeck, SymDecklistType } from 'mtg-decklist-parser2';
+import { CardModel, AbstractDeck, SymDecklistType, toMtgifyCardString } from 'mtg-decklist-parser2';
 import { array_unique_overwrite } from 'array-hyper-unique';
+import { groupKeyByCardTypePriority, GROUP_CARD_TYPE_DISPLAY_PRIORITY } from '@lazy-mtg/group-card-type-by-scryfall-data';
 import { Cards } from 'scryfall-api';
 import Bluebird from 'bluebird';
 
@@ -117,21 +118,6 @@ class ScryfallDecklist extends AbstractDeck {
 
 }
 
-const GROUP_CARD_TYPE_PRIORITY = ["Sorcery", "Instant", "Planeswalker", "Enchantment", "Artifact", "Creature", "Land"];
-const GROUP_CARD_TYPE_DISPLAY_PRIORITY = ["Commander", "Companion", "Creature", "Planeswalker", "Artifact", "Enchantment", "Instant", "Sorcery", "Land", "Sideboard", "Uncategorized"];
-
-function cardTypeGroupByPriority(mainTypes, priority) {
-  mainTypes = [mainTypes].flat();
-  let cardType;
-  (priority !== null && priority !== void 0 ? priority : GROUP_CARD_TYPE_PRIORITY).find(type => {
-    if (mainTypes.includes(type)) {
-      cardType = type;
-      return true;
-    }
-  });
-  return cardType;
-}
-
 function groupScryfallDecklist(decklist) {
   var _decklist$sideboard, _record$Land;
 
@@ -173,7 +159,7 @@ function groupScryfallCardList(list) {
   return list.reduce((record, card) => {
     var _record$group;
 
-    let group = cardTypeGroupByPriority(card.mainTypes);
+    let group = groupKeyByCardTypePriority(card.mainTypes);
     (_record$group = record[group]) !== null && _record$group !== void 0 ? _record$group : record[group] = [];
     record[group].push(card);
     return record;
@@ -187,9 +173,7 @@ function arrayifyGroupRecord(record) {
     if (list !== null && list !== void 0 && list.length) {
       lines.push(group);
       list.forEach(card => {
-        var _card$amount;
-
-        let line = `${(_card$amount = card.amount) !== null && _card$amount !== void 0 ? _card$amount : 1}x ${card.name}`;
+        let line = toMtgifyCardString(card);
         lines.push(line);
       });
       lines.push('');
@@ -230,21 +214,5 @@ function _queryCard(card) {
   return Cards.byName(card.name, (_card$set = card.set) === null || _card$set === void 0 ? void 0 : _card$set.toLowerCase());
 }
 
-var EnumGroupCardType;
-
-(function (EnumGroupCardType) {
-  EnumGroupCardType["Sorcery"] = "Sorcery";
-  EnumGroupCardType["Instant"] = "Instant";
-  EnumGroupCardType["Planeswalker"] = "Planeswalker";
-  EnumGroupCardType["Enchantment"] = "Enchantment";
-  EnumGroupCardType["Artifact"] = "Artifact";
-  EnumGroupCardType["Creature"] = "Creature";
-  EnumGroupCardType["Land"] = "Land";
-  EnumGroupCardType["Commander"] = "Commander";
-  EnumGroupCardType["Uncategorized"] = "Uncategorized";
-  EnumGroupCardType["Sideboard"] = "Sideboard";
-  EnumGroupCardType["Companion"] = "Companion";
-})(EnumGroupCardType || (EnumGroupCardType = {}));
-
-export { EnumGroupCardType, GROUP_CARD_TYPE_DISPLAY_PRIORITY, GROUP_CARD_TYPE_PRIORITY, ScryfallCardModel, ScryfallDecklist, SymRaw, _queryCard, arrayifyGroupRecord, cardTypeGroupByPriority, ScryfallDecklist as default, getCardMainTypes, groupScryfallCardList, groupScryfallDecklist, importByDecklist, parseScryfallCardType, parseScryfallCardTypeExtra, stringifyGroupRecord, stringifyScryfallCardType, stringifyScryfallCardTypeExtra, stringifyScryfallDecklist };
-//# sourceMappingURL=index.esm.js.map
+export { ScryfallCardModel, ScryfallDecklist, SymRaw, _queryCard, arrayifyGroupRecord, ScryfallDecklist as default, getCardMainTypes, groupScryfallCardList, groupScryfallDecklist, importByDecklist, parseScryfallCardType, parseScryfallCardTypeExtra, stringifyGroupRecord, stringifyScryfallCardType, stringifyScryfallCardTypeExtra, stringifyScryfallDecklist };
+//# sourceMappingURL=index.esm.mjs.map

@@ -4,6 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var mtgDecklistParser2 = require('mtg-decklist-parser2');
 var arrayHyperUnique = require('array-hyper-unique');
+var groupCardTypeByScryfallData = require('@lazy-mtg/group-card-type-by-scryfall-data');
 var scryfallApi = require('scryfall-api');
 var Bluebird = require('bluebird');
 
@@ -125,21 +126,6 @@ class ScryfallDecklist extends mtgDecklistParser2.AbstractDeck {
 
 }
 
-const GROUP_CARD_TYPE_PRIORITY = ["Sorcery", "Instant", "Planeswalker", "Enchantment", "Artifact", "Creature", "Land"];
-const GROUP_CARD_TYPE_DISPLAY_PRIORITY = ["Commander", "Companion", "Creature", "Planeswalker", "Artifact", "Enchantment", "Instant", "Sorcery", "Land", "Sideboard", "Uncategorized"];
-
-function cardTypeGroupByPriority(mainTypes, priority) {
-  mainTypes = [mainTypes].flat();
-  let cardType;
-  (priority !== null && priority !== void 0 ? priority : GROUP_CARD_TYPE_PRIORITY).find(type => {
-    if (mainTypes.includes(type)) {
-      cardType = type;
-      return true;
-    }
-  });
-  return cardType;
-}
-
 function groupScryfallDecklist(decklist) {
   var _decklist$sideboard, _record$Land;
 
@@ -181,7 +167,7 @@ function groupScryfallCardList(list) {
   return list.reduce((record, card) => {
     var _record$group;
 
-    let group = cardTypeGroupByPriority(card.mainTypes);
+    let group = groupCardTypeByScryfallData.groupKeyByCardTypePriority(card.mainTypes);
     (_record$group = record[group]) !== null && _record$group !== void 0 ? _record$group : record[group] = [];
     record[group].push(card);
     return record;
@@ -189,15 +175,13 @@ function groupScryfallCardList(list) {
 }
 function arrayifyGroupRecord(record) {
   const lines = [];
-  GROUP_CARD_TYPE_DISPLAY_PRIORITY.forEach(group => {
+  groupCardTypeByScryfallData.GROUP_CARD_TYPE_DISPLAY_PRIORITY.forEach(group => {
     let list = record[group];
 
     if (list !== null && list !== void 0 && list.length) {
       lines.push(group);
       list.forEach(card => {
-        var _card$amount;
-
-        let line = `${(_card$amount = card.amount) !== null && _card$amount !== void 0 ? _card$amount : 1}x ${card.name}`;
+        let line = mtgDecklistParser2.toMtgifyCardString(card);
         lines.push(line);
       });
       lines.push('');
@@ -238,30 +222,11 @@ function _queryCard(card) {
   return scryfallApi.Cards.byName(card.name, (_card$set = card.set) === null || _card$set === void 0 ? void 0 : _card$set.toLowerCase());
 }
 
-exports.EnumGroupCardType = void 0;
-
-(function (EnumGroupCardType) {
-  EnumGroupCardType["Sorcery"] = "Sorcery";
-  EnumGroupCardType["Instant"] = "Instant";
-  EnumGroupCardType["Planeswalker"] = "Planeswalker";
-  EnumGroupCardType["Enchantment"] = "Enchantment";
-  EnumGroupCardType["Artifact"] = "Artifact";
-  EnumGroupCardType["Creature"] = "Creature";
-  EnumGroupCardType["Land"] = "Land";
-  EnumGroupCardType["Commander"] = "Commander";
-  EnumGroupCardType["Uncategorized"] = "Uncategorized";
-  EnumGroupCardType["Sideboard"] = "Sideboard";
-  EnumGroupCardType["Companion"] = "Companion";
-})(exports.EnumGroupCardType || (exports.EnumGroupCardType = {}));
-
-exports.GROUP_CARD_TYPE_DISPLAY_PRIORITY = GROUP_CARD_TYPE_DISPLAY_PRIORITY;
-exports.GROUP_CARD_TYPE_PRIORITY = GROUP_CARD_TYPE_PRIORITY;
 exports.ScryfallCardModel = ScryfallCardModel;
 exports.ScryfallDecklist = ScryfallDecklist;
 exports.SymRaw = SymRaw;
 exports._queryCard = _queryCard;
 exports.arrayifyGroupRecord = arrayifyGroupRecord;
-exports.cardTypeGroupByPriority = cardTypeGroupByPriority;
 exports["default"] = ScryfallDecklist;
 exports.getCardMainTypes = getCardMainTypes;
 exports.groupScryfallCardList = groupScryfallCardList;
@@ -273,4 +238,4 @@ exports.stringifyGroupRecord = stringifyGroupRecord;
 exports.stringifyScryfallCardType = stringifyScryfallCardType;
 exports.stringifyScryfallCardTypeExtra = stringifyScryfallCardTypeExtra;
 exports.stringifyScryfallDecklist = stringifyScryfallDecklist;
-//# sourceMappingURL=index.cjs.development.js.map
+//# sourceMappingURL=index.cjs.development.cjs.map

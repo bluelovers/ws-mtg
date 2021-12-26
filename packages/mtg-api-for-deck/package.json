@@ -25,8 +25,16 @@
   },
   "license": "ISC",
   "author": "bluelovers",
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.esm.mjs",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
   "directories": {
@@ -57,9 +65,11 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
+    "@lazy-mtg/group-card-type-by-scryfall-data": "^1.0.0",
     "array-hyper-unique": "^2.0.6",
     "bluebird": "^3.7.2",
     "lodash-decorators": "^6.0.1",
+    "mtg-decklist-parser2": "^2.0.12",
     "scryfall-api": "^2.2.2",
     "tslib": "^2.3.1"
   },

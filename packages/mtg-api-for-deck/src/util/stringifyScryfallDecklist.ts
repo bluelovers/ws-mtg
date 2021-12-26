@@ -1,10 +1,11 @@
 import { ScryfallDecklist } from '../deck/scryfall';
 import { ScryfallCardModel } from '../card/scryfall';
-import { cardTypeGroupByPriority } from './cardTypeGroupByPriority';
-import { GROUP_CARD_TYPE_DISPLAY_PRIORITY } from '../const';
-import { EnumGroupCardType } from '../types';
-// @ts-ignore
-import { toCardStringWithoutAmount } from 'mtg-decklist-parser2';
+import { toMtgifyCardString } from 'mtg-decklist-parser2';
+import {
+	groupKeyByCardTypePriority,
+	EnumGroupCardType,
+	GROUP_CARD_TYPE_DISPLAY_PRIORITY,
+} from '@lazy-mtg/group-card-type-by-scryfall-data';
 
 export function groupScryfallDecklist(decklist: ScryfallDecklist)
 {
@@ -60,7 +61,7 @@ export function groupScryfallCardList(list: ScryfallCardModel[])
 	return list.reduce((record, card) =>
 	{
 
-		let group = cardTypeGroupByPriority(card.mainTypes);
+		let group = groupKeyByCardTypePriority(card.mainTypes);
 
 		record[group] ??= [];
 		record[group].push(card);
@@ -85,7 +86,7 @@ export function arrayifyGroupRecord(record: Record<EnumGroupCardType, ScryfallCa
 
 				list.forEach(card =>
 				{
-					let line = `${card.amount ?? 1}x ${card.name}`
+					let line = toMtgifyCardString(card)
 
 					lines.push(line)
 				})
