@@ -40,4 +40,4 @@ Object.defineProperty(exports, 'EnumColor', {
 });
 exports.compareWUBRG = compareWUBRG;
 exports["default"] = compareWUBRG;
-//# sourceMappingURL=index.cjs.development.js.map
+//# sourceMappingURL=index.cjs.development.cjs.map

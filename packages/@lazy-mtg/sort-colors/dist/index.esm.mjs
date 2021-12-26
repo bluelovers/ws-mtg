@@ -28,4 +28,4 @@ function compareWUBRG(a, b) {
 }
 
 export { compareWUBRG, compareWUBRG as default };
-//# sourceMappingURL=index.esm.js.map
+//# sourceMappingURL=index.esm.mjs.map
