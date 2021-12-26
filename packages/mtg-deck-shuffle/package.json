@@ -9,14 +9,35 @@
     "card",
     "library",
     "shuffle",
-    "parser"
+    "parser",
+    "create-by-yarn-tool",
+    "create-by-tsdx"
   ],
+  "homepage": "https://github.com/bluelovers/ws-mtg/tree/master/packages/mtg-deck-shuffle#readme",
+  "bugs": {
+    "url": "https://github.com/bluelovers/ws-mtg/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bluelovers/ws-mtg.git"
+  },
   "license": "ISC",
   "author": "bluelovers",
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.esm.mjs",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
     "coverage": "yarn run test -- --coverage",
     "lint": "ynpx --quiet eslint -- **/*.ts",
