@@ -65,7 +65,7 @@
     "tslib": "^2.3.1"
   },
   "devDependencies": {
-    "mtg-decklist-parser2": "^2.0.12"
+    "mtg-decklist-parser2": "^2.0.13"
   },
   "publishConfig": {
     "access": "public"

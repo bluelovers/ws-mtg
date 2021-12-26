@@ -62,7 +62,7 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "mtg-decklist-parser2": "^2.0.12",
+    "mtg-decklist-parser2": "^2.0.13",
     "tslib": "^2.3.1"
   },
   "packageManager": "yarn@^1.22.11"
