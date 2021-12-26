@@ -33,4 +33,4 @@ function assertColorIdentityLazy(color_identity) {
 }
 
 export { COLOR_PRIORITY, assertColorIdentity, assertColorIdentityArray, assertColorIdentityLazy, isColorIdentityLazy as default, getColorTitle, isColorIdentity, isColorIdentityArray, isColorIdentityLazy };
-//# sourceMappingURL=index.esm.js.map
+//# sourceMappingURL=index.esm.mjs.map

@@ -45,4 +45,4 @@ exports.getColorTitle = getColorTitle;
 exports.isColorIdentity = isColorIdentity;
 exports.isColorIdentityArray = isColorIdentityArray;
 exports.isColorIdentityLazy = isColorIdentityLazy;
-//# sourceMappingURL=index.cjs.development.js.map
+//# sourceMappingURL=index.cjs.development.cjs.map
