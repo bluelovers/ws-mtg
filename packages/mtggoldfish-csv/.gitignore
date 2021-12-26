@@ -147,3 +147,4 @@ jest.config.js.map
 /_*/
 _snowpack
 web_modules
+/test/_cookies.local.ts

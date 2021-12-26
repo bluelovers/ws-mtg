@@ -1,12 +1,8 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-var csvParse = require('csv-parse');
+import { parse } from 'csv-parse';
 
 function parseAsync(input) {
   return new Promise((resolve, reject) => {
-    csvParse.parse(input, {
+    parse(input, {
       columns: true,
       skip_empty_lines: true
     }, function (err, records) {
@@ -19,6 +15,5 @@ function parseAsync(input) {
   });
 }
 
-exports["default"] = parseAsync;
-exports.parseAsync = parseAsync;
-//# sourceMappingURL=index.cjs.development.js.map
+export { parseAsync as default, parseAsync };
+//# sourceMappingURL=index.esm.mjs.map
