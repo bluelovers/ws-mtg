@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.5](https://github.com/bluelovers/ws-mtg/compare/mtg-decklist-to-library@1.0.4...mtg-decklist-to-library@1.0.5) (2021-12-26)
+
+
+### 🛠　Build System
+
+* update mtg-decklist-to-library ([8332472](https://github.com/bluelovers/ws-mtg/commit/83324726b442f412c325d48031409542ed23e8c1))
+
+
+
+
+
 ## [1.0.4](https://github.com/bluelovers/ws-mtg/compare/mtg-decklist-to-library@1.0.3...mtg-decklist-to-library@1.0.4) (2021-11-27)
 
 
