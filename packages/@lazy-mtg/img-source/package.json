@@ -1,6 +1,6 @@
 {
   "name": "@lazy-mtg/img-source",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "keywords": [
     "mtg",
@@ -61,7 +61,7 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-mtg/link-source": "^1.0.1",
+    "@lazy-mtg/link-source": "^1.0.2",
     "ts-type": "^2.1.2",
     "tslib": "^2.3.1"
   },

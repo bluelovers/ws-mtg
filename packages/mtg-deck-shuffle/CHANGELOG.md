@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.6](https://github.com/bluelovers/ws-mtg/compare/mtg-deck-shuffle@1.0.5...mtg-deck-shuffle@1.0.6) (2021-12-26)
+
+
+### 🔖　Miscellaneous
+
+* . ([8e07997](https://github.com/bluelovers/ws-mtg/commit/8e0799706e6956fbb8ed93ae70ec821d42149edc))
+
+
+
+
+
 ## [1.0.5](https://github.com/bluelovers/ws-mtg/compare/mtg-deck-shuffle@1.0.4...mtg-deck-shuffle@1.0.5) (2021-12-26)
 
 
