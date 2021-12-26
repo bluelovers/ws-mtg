@@ -1,6 +1,6 @@
 {
   "name": "mtg-deck-shuffle",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "keywords": [
     "mtg",
@@ -73,9 +73,9 @@
     "bluebird": "^3.7.2",
     "distribute-group-to-array": "^1.0.3",
     "fs-extra": "^10.0.0",
-    "mtg-base-land": "^1.0.2",
+    "mtg-base-land": "^1.0.4",
     "mtg-decklist-parser2": "^2.0.12",
-    "mtg-decklist-to-library": "^1.0.4",
+    "mtg-decklist-to-library": "^1.0.6",
     "ts-type": "^2.1.2",
     "tslib": "^2.3.1"
   },

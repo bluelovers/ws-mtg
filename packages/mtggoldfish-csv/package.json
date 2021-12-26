@@ -1,6 +1,6 @@
 {
   "name": "mtggoldfish-csv",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "parse mtggoldfish csv",
   "keywords": [
     "mtg",
@@ -69,6 +69,5 @@
   "devDependencies": {
     "jest-node-exports-resolver": "^1.1.2"
   },
-  "peerDependencies": {},
   "packageManager": "yarn@^1.22.11"
 }

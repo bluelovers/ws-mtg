@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.5](https://github.com/bluelovers/ws-mtg/compare/mtg-deck-shuffle@1.0.4...mtg-deck-shuffle@1.0.5) (2021-12-26)
+
+
+### 📦　Code Refactoring
+
+* use new `[@lazy-random](https://github.com/lazy-random)` ([4149c58](https://github.com/bluelovers/ws-mtg/commit/4149c58da688ac5c840dc630a79294553cec828a))
+
+
+### 🛠　Build System
+
+* update mtg-deck-shuffle ([20b8d47](https://github.com/bluelovers/ws-mtg/commit/20b8d4723d434d048460709a54923508d94eb941))
+
+
+
+
+
 ## [1.0.4](https://github.com/bluelovers/ws-mtg/compare/mtg-deck-shuffle@1.0.3...mtg-deck-shuffle@1.0.4) (2021-11-27)
 
 

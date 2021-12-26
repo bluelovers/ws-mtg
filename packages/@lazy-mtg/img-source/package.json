@@ -1,6 +1,6 @@
 {
   "name": "@lazy-mtg/img-source",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "keywords": [
     "mtg",
@@ -61,14 +61,13 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-mtg/link-source": "^1.0.0",
+    "@lazy-mtg/link-source": "^1.0.1",
     "ts-type": "^2.1.2",
     "tslib": "^2.3.1"
   },
   "devDependencies": {
     "mtg-decklist-parser2": "^2.0.12"
   },
-  "peerDependencies": {},
   "publishConfig": {
     "access": "public"
   },

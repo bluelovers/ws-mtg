@@ -1,6 +1,6 @@
 {
   "name": "@lazy-mtg/sort-colors",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "keywords": [
     "mtg",
@@ -63,12 +63,10 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@lazy-mtg/color-type": "^1.0.0",
+    "@lazy-mtg/color-type": "^1.0.1",
     "ts-type": "^2.1.2",
     "tslib": "^2.3.1"
   },
-  "devDependencies": {},
-  "peerDependencies": {},
   "publishConfig": {
     "access": "public"
   },
