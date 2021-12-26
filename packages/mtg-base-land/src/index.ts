@@ -1,4 +1,4 @@
-import { ITAndTypeAndStringLiteral, ITSToStringLiteral, ITSTypeAndStringLiteral } from 'ts-type/lib/helper/string';
+import { ITSAndTypeAndStringLiteral, ITSToStringLiteral, ITSTypeAndStringLiteral } from 'ts-type/lib/helper/string';
 
 const _re = /^(Snow-Covered )?(.+)$/;
 
@@ -31,7 +31,7 @@ const SNOW_BASE_LAND_ARRAY = Object.freeze(BASE_LAND_ARRAY.slice().map(toSnowBas
 
 export { BASE_LAND_ARRAY, SNOW_BASE_LAND_ARRAY }
 
-export function isBaseLand(name: ITAndTypeAndStringLiteral<EnumBaseLand>): name is ITSTypeAndStringLiteral<EnumBaseLand>
+export function isBaseLand(name: ITSAndTypeAndStringLiteral<EnumBaseLand>): name is ITSTypeAndStringLiteral<EnumBaseLand>
 {
 	return BASE_LAND_ARRAY.includes(name as EnumBaseLand)
 }
@@ -52,7 +52,7 @@ export interface ISnowBaseLand<T extends EnumBaseLand>
 
 export type ISnowCoveredOrBaseLand<T extends EnumBaseLand = EnumBaseLand> = IBaseLand<T> | ISnowBaseLand<T>;
 
-export function parseSnowCoveredOrBaseLand<T extends EnumBaseLand>(name: ITAndTypeAndStringLiteral<EnumBaseLand | ISnowBaseLandName>): ISnowCoveredOrBaseLand<T>
+export function parseSnowCoveredOrBaseLand<T extends EnumBaseLand>(name: ITSAndTypeAndStringLiteral<EnumBaseLand | ISnowBaseLandName>): ISnowCoveredOrBaseLand<T>
 {
 	const m = _re.exec(name);
 
@@ -63,7 +63,7 @@ export function parseSnowCoveredOrBaseLand<T extends EnumBaseLand>(name: ITAndTy
 	} as ISnowCoveredOrBaseLand<T>
 }
 
-export function toSnowBaseLand(name: ITAndTypeAndStringLiteral<EnumBaseLand | ISnowBaseLandName>): ISnowBaseLandName
+export function toSnowBaseLand(name: ITSAndTypeAndStringLiteral<EnumBaseLand | ISnowBaseLandName>): ISnowBaseLandName
 {
 	const m = parseSnowCoveredOrBaseLand(name);
 
@@ -74,14 +74,14 @@ export function toSnowBaseLand(name: ITAndTypeAndStringLiteral<EnumBaseLand | IS
 	}
 }
 
-export function isSnowBaseLand(name: ITAndTypeAndStringLiteral<EnumBaseLand | ISnowBaseLandName>): name is ISnowBaseLandName
+export function isSnowBaseLand(name: ITSAndTypeAndStringLiteral<EnumBaseLand | ISnowBaseLandName>): name is ISnowBaseLandName
 {
 	const m = parseSnowCoveredOrBaseLand(name);
 
 	return m?.snow
 }
 
-export function typeofBaseLand(name: ITAndTypeAndStringLiteral<EnumBaseLand | ISnowBaseLandName>): EnumBaseLand
+export function typeofBaseLand(name: ITSAndTypeAndStringLiteral<EnumBaseLand | ISnowBaseLandName>): EnumBaseLand
 {
 	return parseSnowCoveredOrBaseLand(name)?.type;
 }

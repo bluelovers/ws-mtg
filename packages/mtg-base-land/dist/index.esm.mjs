@@ -1,9 +1,5 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
 const _re = /^(Snow-Covered )?(.+)$/;
-exports.EnumBaseLand = void 0;
+var EnumBaseLand;
 
 (function (EnumBaseLand) {
   EnumBaseLand["Plains"] = "Plains";
@@ -11,7 +7,7 @@ exports.EnumBaseLand = void 0;
   EnumBaseLand["Swamp"] = "Swamp";
   EnumBaseLand["Mountain"] = "Mountain";
   EnumBaseLand["Forest"] = "Forest";
-})(exports.EnumBaseLand || (exports.EnumBaseLand = {}));
+})(EnumBaseLand || (EnumBaseLand = {}));
 
 const BASE_LAND_ARRAY = /*#__PURE__*/Object.freeze(["Plains", "Island", "Swamp", "Mountain", "Forest"]);
 const SNOW_BASE_LAND_ARRAY = /*#__PURE__*/Object.freeze( /*#__PURE__*/BASE_LAND_ARRAY.slice().map(toSnowBaseLand));
@@ -46,12 +42,5 @@ function typeofBaseLand(name) {
   return (_parseSnowCoveredOrBa = parseSnowCoveredOrBaseLand(name)) === null || _parseSnowCoveredOrBa === void 0 ? void 0 : _parseSnowCoveredOrBa.type;
 }
 
-exports.BASE_LAND_ARRAY = BASE_LAND_ARRAY;
-exports.SNOW_BASE_LAND_ARRAY = SNOW_BASE_LAND_ARRAY;
-exports["default"] = parseSnowCoveredOrBaseLand;
-exports.isBaseLand = isBaseLand;
-exports.isSnowBaseLand = isSnowBaseLand;
-exports.parseSnowCoveredOrBaseLand = parseSnowCoveredOrBaseLand;
-exports.toSnowBaseLand = toSnowBaseLand;
-exports.typeofBaseLand = typeofBaseLand;
-//# sourceMappingURL=index.cjs.development.js.map
+export { BASE_LAND_ARRAY, EnumBaseLand, SNOW_BASE_LAND_ARRAY, parseSnowCoveredOrBaseLand as default, isBaseLand, isSnowBaseLand, parseSnowCoveredOrBaseLand, toSnowBaseLand, typeofBaseLand };
+//# sourceMappingURL=index.esm.mjs.map
