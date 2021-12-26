@@ -15,6 +15,7 @@ export declare class ScryfallCardModel extends CardModel {
 	[SymRaw]: Card;
 	rarity: IRarity;
 	mainTypes: string[];
+	multiverseid: string;
 	constructor(apiResult: IScryfallCardInput, amount?: number);
 	protected _init(): void;
 }

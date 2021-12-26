@@ -57,8 +57,11 @@ class ScryfallCardModel extends CardModel {
   }
 
   _init() {
+    var _this$SymRaw$multiver, _this$SymRaw$multiver2;
+
     this.rarity = this[SymRaw].rarity;
     this.mainTypes = getCardMainTypes(parseScryfallCardTypeExtra(this[SymRaw].type_line));
+    this.multiverseid = (_this$SymRaw$multiver = this[SymRaw].multiverse_ids) === null || _this$SymRaw$multiver === void 0 ? void 0 : (_this$SymRaw$multiver2 = _this$SymRaw$multiver[0]) === null || _this$SymRaw$multiver2 === void 0 ? void 0 : _this$SymRaw$multiver2.toString();
   }
 
 }

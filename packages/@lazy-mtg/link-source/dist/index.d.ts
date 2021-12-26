@@ -11,7 +11,7 @@ export declare const enum EnumLinkSource {
 	magicCardsInfo = "magicCardsInfo",
 	comboDeck = "comboDeck"
 }
-export interface ICardForQueryInfo extends Partial<Omit<ICardWithoutAmount, "mtgoID">> {
+export interface ICardForQueryInfo extends Partial<Omit<ICardWithoutAmount, "mtgoID" | "multiverseid">> {
 	multiverseid?: string | number;
 	mtgoID?: string | number;
 }

@@ -11,6 +11,7 @@ export class ScryfallCardModel extends CardModel
 
 	rarity: IRarity;
 	mainTypes: string[];
+	multiverseid: string;
 
 	constructor(apiResult: IScryfallCardInput, amount?: number)
 	{
@@ -33,6 +34,7 @@ export class ScryfallCardModel extends CardModel
 	{
 		this.rarity = this[SymRaw].rarity;
 		this.mainTypes = getCardMainTypes(parseScryfallCardTypeExtra(this[SymRaw].type_line));
+		this.multiverseid = this[SymRaw].multiverse_ids?.[0]?.toString();
 	}
 
 }
