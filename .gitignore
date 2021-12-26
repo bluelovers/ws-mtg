@@ -133,7 +133,7 @@ jest.config.js.map
 !npm-shrinkwrap.json
 *.stat
 .vercel
-/test/tsconfig.json.tpl
+/test/tsconfig.json
 /tsconfig.json.tpl
 /report.json
 
@@ -147,3 +147,8 @@ jest.config.js.map
 /_*/
 _snowpack
 web_modules
+*.cjs.map
+*.mjs.map
+
+/packages/**/src/**/*.d.ts
+
