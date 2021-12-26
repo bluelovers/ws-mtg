@@ -9,14 +9,35 @@
     "card",
     "library",
     "shuffle",
-    "parser"
+    "parser",
+    "create-by-yarn-tool",
+    "create-by-tsdx"
   ],
+  "homepage": "https://github.com/bluelovers/ws-mtg/tree/master/packages/mtg-decklist-to-library#readme",
+  "bugs": {
+    "url": "https://github.com/bluelovers/ws-mtg/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bluelovers/ws-mtg.git"
+  },
   "license": "ISC",
   "author": "bluelovers",
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.esm.mjs",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
     "coverage": "yarn run test -- --coverage",
     "lint": "ynpx --quiet eslint -- **/*.ts",
@@ -41,7 +62,7 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "mtg-decklist-parser2": "^2.0.6",
+    "mtg-decklist-parser2": "^2.0.12",
     "tslib": "^2.3.1"
   },
   "packageManager": "yarn@^1.22.11"
