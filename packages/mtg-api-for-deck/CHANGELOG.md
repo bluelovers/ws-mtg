@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/bluelovers/ws-mtg/compare/mtg-api-for-deck@1.0.2...mtg-api-for-deck@1.0.3) (2021-12-26)
+
+
+### 🔖　Miscellaneous
+
+* . ([4da3d52](https://github.com/bluelovers/ws-mtg/commit/4da3d5232f0e01a8685f8dfc4976996067608563))
+
+
+
+
+
 ## [1.0.2](https://github.com/bluelovers/ws-mtg/compare/mtg-api-for-deck@1.0.1...mtg-api-for-deck@1.0.2) (2021-12-26)
 
 
