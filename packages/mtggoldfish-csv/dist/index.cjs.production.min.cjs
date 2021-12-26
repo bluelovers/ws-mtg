@@ -1,2 +1,2 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("csv-parse");function r(r){return new Promise(((s,t)=>{e.parse(r,{columns:!0,skip_empty_lines:!0},(function(e,r){e?t(e):s(r)}))}))}exports.default=r,exports.parseAsync=r;
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("csv-parse");function r(r){return new Promise(((s,t)=>{e.parse(r,{columns:!0,skip_empty_lines:!0,skip_records_with_error:!0},(function(e,r){e?t(e):s(r)}))}))}exports.default=r,exports.parseAsync=r;
 //# sourceMappingURL=index.cjs.production.min.cjs.map

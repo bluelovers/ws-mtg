@@ -8,7 +8,8 @@ function parseAsync(input) {
   return new Promise((resolve, reject) => {
     csvParse.parse(input, {
       columns: true,
-      skip_empty_lines: true
+      skip_empty_lines: true,
+      skip_records_with_error: true
     }, function (err, records) {
       if (err) {
         reject(err);

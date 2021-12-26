@@ -30,6 +30,7 @@ export function parseAsync(input: string | Uint8Array)
 		parse(input as any, {
 			columns: true,
 			skip_empty_lines: true,
+			skip_records_with_error: true,
 		}, function (err, records)
 		{
 			if (err)
